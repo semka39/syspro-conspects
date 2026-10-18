@@ -2241,3 +2241,264 @@ $$ z_n = \sup_{k \ge n} x_k = \begin{cases}
 \sup \{\frac{1}{n}; n+1; \frac{1}{n+2}; \dots\} = +\infty, & \text{n-нечетное} 
 \end{cases} $$
 $$ z_n = +\infty \;\; \forall n, \quad \overline{\lim}_{n\to\infty} x_n = \lim_{n\to\infty} z_n = +\infty $$
+
+**2)** $x_n = (-1)^n \left(1 + \frac{1}{n}\right)$
+
+$$z_n = \sup_{k \ge n} x_k = \begin{cases} \sup \left\{ \left(1 + \frac{1}{n}\right); -\left(1 + \frac{1}{n+1}\right); 1 + \frac{1}{n+2}; \dots \right\} = 1 + \frac{1}{n}, & n \text{ — чётное} \\ \sup \left\{ \underbrace{-\left(1 + \frac{1}{n}\right)}_{< 0}; \left(1 + \frac{1}{n+1}\right); -\left(1 + \frac{1}{n+2}\right); \dots \right\} = 1 + \frac{1}{n+1}, & n \text{ — нечётное} \end{cases}$$
+
+- $\{z_n\}: \quad \underset{n=1}{1 + \frac{1}{2}}; \; \underset{n=2}{1 + \frac{1}{2}}; \; \underset{n=3}{1 + \frac{1}{4}}; \; \underset{n=4}{1 + \frac{1}{4}}; \; 1 + \frac{1}{6}; \; 1 + \frac{1}{6}; \; \dots$
+
+$$\overline{\lim_{n \to \infty}} x_n = \lim_{n \to \infty} z_n = \inf_n z_n = 1$$
+
+$$w_n = \inf_{k \ge n} x_k = \begin{cases} \inf \left\{ 1 + \frac{1}{n}; -\left(1 + \frac{1}{n+1}\right); 1 + \frac{1}{n+2}; \dots \right\} = -\left(1 + \frac{1}{n+1}\right), & \text{если } n \text{ — чётное} \\ \inf \left\{ -\left(1 + \frac{1}{n}\right); 1 + \frac{1}{n+1}; -\left(1 + \frac{1}{n+2}\right); \dots \right\} = -\left(1 + \frac{1}{n}\right), & n \text{ — нечётное} \end{cases}$$
+
+$$\underline{\lim}_{n \to \infty} x_n = \lim_{n \to \infty} w_n = \sup_n w_n = -1$$
+
+#### п. 3. Свойства $\overline{\lim_{n \to \infty}} x_n$ и $\underline{\lim}_{n \to \infty} x_n$
+
+- **Свойство 1.**
+  * **1)** Если $\overline{\lim_{n \to \infty}} x_n = a$, то $\forall \varepsilon > 0 \quad \exists N : \forall n \ge N \quad x_n < a + \varepsilon$.
+  * **2)** Если $\underline{\lim}_{n \to \infty} x_n = a$, то $\forall \varepsilon > 0 \quad \exists N : \forall n \ge N \quad x_n > a - \varepsilon$.
+
+**Доказательство:**
+
+- **1)** Для $a \in \mathbb{R}$. $\quad a = \lim_{n \to \infty} \sup_{k \ge n} x_k$.
+  * Для произвольного $\varepsilon > 0 \quad \exists N : \forall n \ge N \quad \left| \overbrace{\sup_{k \ge n} x_k}^{z_n} - a \right| < \varepsilon, \quad \overbrace{\sup_{k \ge n} x_k}^{z_n} < a + \varepsilon$
+    $$\left( |z_n - a| < \varepsilon \iff -\varepsilon < z_n - a < \varepsilon \iff a - \varepsilon < z_n < a + \varepsilon \right)$$
+  * Тем более $\forall n \ge N \quad x_n \le \sup_{k \ge n} x_k < a + \varepsilon$. $\blacksquare$
+
+
+- **Свойство 2.** Пусть $a = \overline{\lim_{n \to \infty}} x_n$. Тогда:
+  * **1)** Если $\forall \varepsilon > 0 \quad \exists N : \forall n \ge N \quad x_n < b + \varepsilon$, то $a \le b$.
+  * **2)** Если $\forall \varepsilon > 0$ множество $\{n : x_n > c - \varepsilon\}$ бесконечно, то $c \le a$.
+
+**Доказательство (для $a \in \mathbb{R}$):**
+
+- **1)** Предположим, что $a > b$. Выберем $\varepsilon > 0$ так, что $b + \varepsilon < a$, например, $\varepsilon = \frac{a - b}{2} > 0$.
+  * Тогда $\exists N : \forall n \ge N \quad x_n < b + \varepsilon$, тогда и $\forall n \ge N \quad z_n = \sup_{k \ge n} x_k \le b + \varepsilon$, и
+    $$a = \lim_{n \to \infty} z_n \le b + \varepsilon < a \text{ — противоречие. Значит, } a \le b.$$
+
+
+- **2)** Предположим, что $c > a$. Выберем $\varepsilon > 0$ так, чтобы $c - \varepsilon > a$, например, $\varepsilon = \frac{c - a}{2} > 0$.
+  * Так как множество $\{n : x_n > c - \varepsilon\}$ бесконечно, то $\forall n \quad z_n = \sup_{k \ge n} x_k \ge c - \varepsilon$.
+  * Тогда $a = \lim_{n \to \infty} z_n \ge c - \varepsilon > a$ — противоречие. Значит, $c \le a$.
+
+
+- **Свойство 3.** Пусть $a = \underline{\lim}_{n \to \infty} x_n$. Тогда:
+  * **1)** Если $\forall \varepsilon > 0 \quad \exists N : \forall n \ge N \quad x_n > b - \varepsilon$, то $a \ge b$.
+  * **2)** Если $\forall \varepsilon > 0$ множество $\{n : x_n < c + \varepsilon\}$ бесконечно, то $c \ge a$. *(аналогично)*
+
+
+- **Свойство 4.** Пусть $\exists N : \forall n \ge N \quad x_n \le y_n$. Тогда $\overline{\lim_{n \to \infty}} x_n \le \overline{\lim_{n \to \infty}} y_n, \quad \underline{\lim}_{n \to \infty} x_n \le \underline{\lim}_{n \to \infty} y_n$.
+
+**Доказательство:**
+
+- Если $\forall n \ge N \quad x_n \le y_n$, то:
+  $$\forall n \ge N \quad \forall m \ge n \quad x_m \le \sup_{k \ge n} y_k$$
+  $$\forall n \ge N \quad \sup_{m \ge n} x_m \le \sup_{k \ge n} y_k$$
+  $$\lim_{n \to \infty} \sup_{m \ge n} x_m \le \lim_{n \to \infty} \sup_{k \ge n} y_k, \text{ то есть } \overline{\lim_{n \to \infty}} x_n \le \overline{\lim_{n \to \infty}} y_n$$
+
+
+- Для нижнего предела — аналогично. $\blacksquare$
+
+
+- **Свойство 5 (арифметические свойства).** Пусть $\{x_n\}$ и $\{y_n\}$ — ограниченные последовательности.
+  * **1)** $\overline{\lim_{n \to \infty}} (x_n + y_n) \le \overline{\lim_{n \to \infty}} x_n + \overline{\lim_{n \to \infty}} y_n$
+    $$\underline{\lim}_{n \to \infty} (x_n + y_n) \ge \underline{\lim}_{n \to \infty} x_n + \underline{\lim}_{n \to \infty} y_n$$
+    * **Пример:** $x_n = (-1)^n, \; y_n = (-1)^{n+1}, \quad \overline{\lim_{n \to \infty}} x_n = \overline{\lim_{n \to \infty}} y_n = 1$. При этом $x_n + y_n = 0, \quad \overline{\lim_{n \to \infty}} (x_n + y_n) = 0 \ne 2$.
+    * **Упражнение:**
+      $$\overline{\lim_{n \to \infty}} (x_n + y_n) \ge \overline{\lim_{n \to \infty}} x_n + \underline{\lim}_{n \to \infty} y_n$$
+      $$\underline{\lim}_{n \to \infty} (x_n + y_n) \le \overline{\lim_{n \to \infty}} x_n + \underline{\lim}_{n \to \infty} y_n$$
+  * **2)** Для $\lambda > 0$: $\quad \overline{\lim_{n \to \infty}} (\lambda \cdot x_n) = \lambda \cdot \overline{\lim_{n \to \infty}} x_n, \quad \underline{\lim}_{n \to \infty} (\lambda \cdot x_n) = \lambda \cdot \underline{\lim}_{n \to \infty} x_n$.
+  * **3)** Пусть $x_n, y_n \ge 0 \quad \forall n$. Тогда:
+    $$\overline{\lim_{n \to \infty}} (x_n \cdot y_n) \le \overline{\lim_{n \to \infty}} x_n \cdot \overline{\lim_{n \to \infty}} y_n$$
+    $$\underline{\lim}_{n \to \infty} (x_n \cdot y_n) \ge \underline{\lim}_{n \to \infty} x_n \cdot \underline{\lim}_{n \to \infty} y_n$$
+  * **4)** $\overline{\lim_{n \to \infty}} (-x_n) = -\underline{\lim}_{n \to \infty} x_n$.
+
+**Доказательство:**
+
+- **1)** Пусть $a = \overline{\lim_{n \to \infty}} (x_n + y_n), \; b = \overline{\lim_{n \to \infty}} x_n, \; c = \overline{\lim_{n \to \infty}} y_n, \quad a, b, c \in \mathbb{R}$.
+  * Из свойства 1: для произвольного $\varepsilon > 0$
+    $$\exists N_1 : \forall n \ge N_1 \quad x_n < b + \frac{\varepsilon}{2} \quad \text{и} \quad \exists N_2 : \forall n \ge N_2 \quad y_n < c + \frac{\varepsilon}{2}.$$
+  * Тогда $\forall n \ge N = \max(N_1, N_2) \quad x_n + y_n < b + c + \varepsilon$.
+  * По свойству 2, $a = \overline{\lim_{n \to \infty}} (x_n + y_n) \le b + c$.
+
+
+- **2)** Используем свойства $\sup(\lambda \cdot A) = \lambda \cdot \sup A$ и $\inf(\lambda \cdot A) = \lambda \cdot \inf A, \; \lambda > 0$, где $\lambda \cdot A = \{\lambda x \mid x \in A\}$ *(упражнение)*.
+  $$\sup_{k \ge n} (\lambda \cdot x_k) = \lambda \cdot \sup_{k \ge n} x_k$$
+  $$\underbrace{\lim_{n \to \infty} \sup_{k \ge n} (\lambda \cdot x_k)}_{\overline{\lim_{n \to \infty}} (\lambda x_n)} = \lim_{n \to \infty} \left(\lambda \cdot \sup_{k \ge n} x_k\right) = \lambda \cdot \lim_{n \to \infty} \sup_{k \ge n} x_k = \lambda \cdot \overline{\lim_{n \to \infty}} x_n.$$
+
+
+- **4)** Используем свойства $\sup(-A) = -\inf A, \; \inf(-A) = -\sup A$, где $-A = \{-x \mid x \in A\}$ — *упражнение*.
+  $$\sup_{k \ge n} (-x_k) = -\inf_{k \ge n} x_k, \quad \underbrace{\lim_{n \to \infty} \sup_{k \ge n} (-x_k)}_{\overline{\lim_{n \to \infty}} (-x_n)} = \underbrace{-\lim_{n \to \infty} \inf_{k \ge n} x_k}_{-\underline{\lim}_{n \to \infty} x_n}.$$
+
+
+- **3)** Пусть $x_n, y_n \ge 0 \quad \forall n$, и пусть $a = \overline{\lim_{n \to \infty}} (x_n \cdot y_n), \; b = \overline{\lim_{n \to \infty}} x_n, \; c = \overline{\lim_{n \to \infty}} y_n, \quad a, b, c \in \mathbb{R}, \; a, b, c \ge 0$.
+  * По свойству 1, $\forall \varepsilon > 0 \quad \exists N : \forall n \ge N \quad x_n < b + \varepsilon$,
+  * $\forall n \ge N \quad x_n \cdot y_n \le (b + \varepsilon) \cdot y_n$.
+  * По свойствам 4 и 5 (2):
+    $$a = \overline{\lim_{n \to \infty}} (x_n \cdot y_n) \le \overline{\lim_{n \to \infty}} (b + \varepsilon) y_n = (b + \varepsilon) \overline{\lim_{n \to \infty}} y_n = (b + \varepsilon) \cdot c.$$
+  * Так как $a \le (b + \varepsilon) c \quad \forall \varepsilon > 0$, то $a \le b \cdot c$. $\blacksquare$
+
+#### п. 4. Связь верхнего, нижнего и частичных пределов
+
+- **Теорема.** Верхний и нижний пределы последовательности являются соответственно наибольшим и наименьшим частичными пределами последовательности.
+
+**Доказательство (для верхнего предела; для нижнего — аналогично):**
+$$\left( \{x_n, x_{n+1}, x_{n+2}, \dots\}, \quad z_n = \sup \{x_n, x_{n+1}, x_{n+2}, \dots\} \right)$$
+
+- **1)** Если $\{x_n\}$ не ограничена сверху, то $z_n = \sup_{k \ge n} x_k = +\infty \quad \forall n, \quad \overline{\lim_{n \to \infty}} x_n = +\infty$, и при этом существует подпоследовательность $\{x_{n_k}\} : \lim_{k \to \infty} x_{n_k} = +\infty$.
+
+
+- **2)** Пусть $\{x_n\}$ ограничена сверху. Тогда $z_n = \sup_{k \ge n} x_k, \; \{z_n\} \downarrow, \quad \overline{\lim_{n \to \infty}} x_n = \lim_{n \to \infty} z_n = \inf_n z_n = a \in \mathbb{R}$ или $-\infty$.
+  * **2.1)** Пусть $a \in \mathbb{R}$:
+    По свойству $\sup$: $\forall \varepsilon > 0 \quad \exists m > n : z_n - \varepsilon < x_m \le z_n$.
+    * $n = 1, \; \varepsilon = 1, \quad \exists n_1 > 1 : \quad z_1 - 1 < x_{n_1} \le z_1$
+    * $n = 2, \; \varepsilon = \frac{1}{2}, \quad \exists n_2 > 2, \; n_2 > n_1 : \quad z_2 - \frac{1}{2} < x_{n_2} \le z_2$
+    * и так далее, $n = k, \; \varepsilon = \frac{1}{k}, \quad \exists n_k > k, \; n_k > n_{k-1} : \quad z_k - \frac{1}{k} < x_{n_k} \le z_k$.
+    * Так как $\lim_{k \to \infty} z_k = \lim_{k \to \infty} \left(z_k - \frac{1}{k}\right) = a$, то $\lim_{k \to \infty} x_{n_k} = a = \overline{\lim_{n \to \infty}} x_n$.
+    * Так как $\forall n \quad x_n \le \overbrace{z_n}^{\sup_{k \ge n} x_k}$, то для любой подпоследовательности $\{x_{n_k}\} : x_{n_k} \le z_{n_k} \quad \forall k$, следовательно, любой частичный предел
+      $$\lim_{k \to \infty} x_{n_k} \le \lim_{k \to \infty} z_{n_k} = \overline{\lim_{n \to \infty}} x_n.$$
+      То есть $\overline{\lim_{n \to \infty}} x_n$ — наибольший из частичных пределов.
+  * **2.2)** Если $\lim_{n \to \infty} z_n = -\infty$, то из $x_n \le z_n$ следует, что $\lim_{n \to \infty} x_n = -\infty$. $\blacksquare$
+
+
+- **Следствие.** Последовательность $\{x_n\}$ имеет конечный или бесконечный предел $\iff \overline{\lim_{n \to \infty}} x_n = \underline{\lim}_{n \to \infty} x_n$.
+
+**Доказательство:**
+$$\text{Если существует } \lim_{n \to \infty} x_n \in \overline{\mathbb{R}} \iff \text{все частичные пределы совпадают} \iff \underbrace{\overline{\lim_{n \to \infty}} x_n}_{\substack{\text{наибольший из} \\ \text{частичных}}} = \underbrace{\underline{\lim}_{n \to \infty} x_n}_{\substack{\text{наименьший из} \\ \text{частичных}}}.$$
+
+### §7. Степень с действительным показателем
+
+- **Теорема (об арифметическом корне).** Для любых $a \ge 0$ и $n \in \mathbb{N}$ существует единственный $x \ge 0 : x^n = a$. (Будем обозначать $x = \sqrt[n]{a}$.)
+
+**Доказательство:** следует из того, что функция $y = x^n$ строго монотонно возрастает на $[0; +\infty)$ и теоремы об обратной функции (в следующей главе). $\blacksquare$
+
+
+- **Теорема (функциональное задание степени).** Для любого $a > 0$ существует единственная функция $f_a : \mathbb{R} \to \mathbb{R}$, удовлетворяющая свойствам:
+  * **1)** $f_a(x + y) = f_a(x) \cdot f_a(y)$;
+  * **2)** $f_a(x)$ монотонна;
+  * **3)** $f_a(1) = a$.
+  * Эту функцию будем обозначать через $f_a(x) = a^x$, так как для $x \in \mathbb{Q}$ она будет совпадать с функцией $a^x$ в общеизвестном смысле.
+
+
+- **Определение.** $f(x)$ монотонно возрастает (убывает) на $\langle a, b \rangle$, если $\forall x_1, x_2 \in \langle a, b \rangle$ из $x_1 < x_2 \implies f(x_1) \le f(x_2)$ ($f(x_1) \ge f(x_2)$).
+  * Строго монотонно возрастает (строго монотонно убывает): $f(x_1) < f(x_2)$ ($f(x_1) > f(x_2)$).
+
+**Доказательство:**
+
+*(Примечание: далее в доказательстве свойства перенумерованы: 1) $f_a(x)$ монотонна; 2) $f_a(x+y) = f_a(x) \cdot f_a(y)$; 3) $f_a(1) = a$.)*
+
+- **1)** $a = f_a(1) = f_a(1 + 0) = \overbrace{f_a(1)}^{a} \cdot f_a(0) = a \cdot f_a(0), \quad f_a(0) = 1$.
+  * Для $x > 0$: $1 = f_a(0) = f_a(x + (-x)) = f_a(x) \cdot f_a(-x)$, то есть $f_a(-x) = \frac{1}{f_a(x)}, \quad \forall x$.
+  * $f_a(n) = f_a(1 + 1 + \dots + 1) = f_a(1) \cdot f_a(1) \cdot \dots \cdot f_a(1) = a^n, \quad n \in \mathbb{N}$.
+  * $f_a(-n) = \frac{1}{f_a(n)} = \frac{1}{a^n}, \quad n \in \mathbb{N}$.
+  * Для $x = \frac{1}{n}, \; n \in \mathbb{N}$:
+    $$a = f_a(1) = f_a\left(\overbrace{\frac{1}{n} + \frac{1}{n} + \dots + \frac{1}{n}}^{n \text{ раз}}\right) = \overbrace{f_a\left(\frac{1}{n}\right) \cdot \dots \cdot f_a\left(\frac{1}{n}\right)}^{n \text{ раз}} = \left(f_a\left(\frac{1}{n}\right)\right)^n, \quad f_a\left(\frac{1}{n}\right) = \sqrt[n]{a}.$$
+  * Для $x = \frac{m}{n}, \; m, n \in \mathbb{N}$:
+    $$f_a\left(\frac{m}{n}\right) = f_a\left(\overbrace{\frac{1}{n} + \dots + \frac{1}{n}}^{m \text{ раз}}\right) = \overbrace{f_a\left(\frac{1}{n}\right) \cdot \dots \cdot f_a\left(\frac{1}{n}\right)}^{m \text{ раз}} = \left(\sqrt[n]{a}\right)^m = \sqrt[n]{a^m}.$$
+  * $x = -\frac{m}{n}, \; m, n \in \mathbb{N}$:
+    $$f_a\left(-\frac{m}{n}\right) = \frac{1}{f_a\left(\frac{m}{n}\right)} = \frac{1}{\sqrt[n]{a^m}} = \sqrt[n]{a^{-m}}.$$
+  * (Для $x \in \mathbb{Q} \quad f_a(x) = a^x$.)
+
+
+- Если $a = 1$, то $f_a(n) = 1 \quad \forall n \in \mathbb{Z}$. Так как $f_a(x)$ должна быть монотонной, то $f_a(x) \equiv 1$.
+- Если $a > 1$, то $f_a(x)$ возрастает для всех $x \in \mathbb{Q}$ (это следует из свойств степеней и корней).
+- Если $0 < a < 1$, то $f_a(x)$ убывает для всех $x \in \mathbb{Q}$.
+
+
+- Определим функцию $f_a(x)$ для $x \notin \mathbb{Q}$ так, чтобы сохранились свойства (1) и (2). Пусть $a > 1$ *(для $0 < a < 1$ — аналогично)*.
+  * Пусть $r \notin \mathbb{Q}$, обозначим $A = \{f_a(q) \mid q \in \mathbb{Q}, \; q < r\}, \quad B = \{f_a(q) \mid q \in \mathbb{Q}, \; q > r\}$.
+  * Тогда $\sup A \le \inf B$. Для выполнения свойства (1) должно быть $\sup A \le f_a(r) \le \inf B$. Покажем, что $\sup A = \inf B$.
+  * Зафиксируем $n \in \mathbb{N}$. Тогда существует единственное $m \in \mathbb{Z} : \frac{m}{n} < r < \frac{m+1}{n}$. Следовательно,
+    $$\underset{\in A}{\sqrt[n]{a^m}} \le \sup A \le \inf B \le \underset{\in B}{\sqrt[n]{a^{m+1}}} = \sqrt[n]{a^m} \cdot \sqrt[n]{a} \le \sup A \cdot \sqrt[n]{a}$$
+    $$\sup A \le \inf B \le \sup A \cdot \underbrace{\sqrt[n]{a}}_{\to 1} \implies \text{из теоремы о зажатой последовательности: } \inf B = \sup A.$$
+  * Полагаем $f_a(r) = \sup A = \inf B$, свойство (1) выполняется:
+    Пусть $x < y$, тогда $\exists p \in \mathbb{Q} : x \le p < y, \quad f_a(x) \le f_a(p) \le f_a(y)$.
+
+
+- Докажем свойство (2). Пусть $a > 1$. Пусть $x, y \in \mathbb{R}$. Зафиксируем $n \in \mathbb{N}$, тогда существуют $k, m \in \mathbb{Z}$:
+  $$\frac{k}{n} \le x < \frac{k+1}{n}, \quad \frac{m}{n} \le y < \frac{m+1}{n}, \quad \text{тогда } \frac{k+m}{n} \le x + y < \frac{k+m+2}{n}.$$
+  * Так как $f_a(x)$ монотонно возрастает, то
+    $$f_a(x) \cdot f_a(y) \le \sqrt[n]{a^{k+1}} \cdot \sqrt[n]{a^{m+1}} = \sqrt[n]{a^{k+m}} \cdot \sqrt[n]{a^2} \le f_a(x+y) \cdot \underbrace{\sqrt[n]{a^2}}_{\to 1}.$$
+  * При $n \to \infty$ получаем $f_a(x) \cdot f_a(y) \le f_a(x+y)$.
+  * С другой стороны,
+    $$f_a(x+y) \le \sqrt[n]{a^{k+m+2}} = \sqrt[n]{a^k} \cdot \sqrt[n]{a^m} \cdot \sqrt[n]{a^2} \le f_a(x) \cdot f_a(y) \cdot \underbrace{\sqrt[n]{a^2}}_{\to 1}.$$
+  * Переходим к пределу при $n \to \infty$: $f_a(x+y) \le f_a(x) \cdot f_a(y)$, то есть $f_a(x+y) = f_a(x) \cdot f_a(y)$. $\blacksquare$
+
+
+- **Замечание.** Если $a \ne 1$, то $f_a(x)$ строго монотонна: $\nearrow$ при $a > 1$, $\searrow$ при $0 < a < 1$.
+  * Предположим, что $f_a(x+h) = f_a(x)$ для некоторого $h > 0$. Тогда $f_a(x) \cdot f_a(h) = f_a(x), \; f_a(h) = 1$, следовательно, $f_a(nh) = 1 \quad \forall n \in \mathbb{Z}$, и $f_a(x) \equiv 1$.
+
+
+- **Следствие.** $\left(a^x\right)^y = a^{x \cdot y} \quad \forall x, y \in \mathbb{R}, \; a > 0$.
+
+**Доказательство:**
+
+- Для $a = 1$ — очевидно. Зафиксируем $a \ne 1, \; x \in \mathbb{R}$ и рассмотрим функцию $f(y) = a^{x \cdot y}$. Если $x = 0$, то $f(y) \equiv 1$, и утверждение верно.
+- Пусть $x \ne 0$.
+  * **1)** $f(y)$ монотонна:
+    * Если $a > 1, \; x > 0$, то из $y_1 < y_2 \implies x \cdot y_1 < x \cdot y_2 \implies a^{x \cdot y_1} < a^{x \cdot y_2}, \quad f(y_1) < f(y_2)$.
+    * $a > 1, \; x < 0$: $y_1 < y_2 \implies x \cdot y_1 > x \cdot y_2 \implies a^{x y_1} > a^{x y_2}, \quad f(y_1) > f(y_2)$.
+    * $\left. \begin{array}{l} 0 < a < 1, \; x > 0 \\ 0 < a < 1, \; x < 0 \end{array} \right\}$ аналогично.
+  * **2)** $f(y_1 + y_2) = a^{x \cdot (y_1 + y_2)} = a^{x y_1 + x y_2} = a^{x y_1} \cdot a^{x y_2} = f(y_1) \cdot f(y_2)$.
+  * **3)** $f(1) = a^x$.
+  * По теореме, $f(y) = f_{a^x}(y) = \left(a^x\right)^y$, то есть $a^{x \cdot y} = \left(a^x\right)^y$. $\blacksquare$
+
+
+- **Теорема (о логарифме).** Для любых $a > 0, \; a \ne 1$, и $b > 0$ существует единственный $x \in \mathbb{R} : a^x = b$.
+  * Это число $x$ называется **логарифмом числа $b$ по основанию $a$**, обозначается $x = \log_a b$.
+
+**Доказательство:** следует из строгой монотонности функции $y = a^x$ и теоремы об обратной функции. $\blacksquare$
+
+#### п. 2. Экспоненциальная функция
+
+$$\left( e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \right)$$
+
+- Рассмотрим последовательность $u_n(x) = \left(1 + \frac{x}{n}\right)^n, \; x \in \mathbb{R}$. Докажем, что $\forall x \in \mathbb{R}$ существует $\lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n \in \mathbb{R}$.
+- При $x = 0$ — очевидно: $\lim_{n \to \infty} u_n(0) = 1$.
+  $$u_n(x) = \sum_{k=0}^n \frac{n!}{k!(n-k)!} \cdot \frac{x^k}{n^k} = \sum_{k=0}^n c_{n,k} \cdot \frac{x^k}{k!}, \quad \text{где } c_{n,k} = \frac{n!}{(n-k)! n^k} = \begin{cases} 1, & k = 0 \text{ или } 1 \\ \left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\dots\left(1 - \frac{k-1}{n}\right), & 1 < k \le n \end{cases}$$
+  $$0 < c_{n,k} < 1, \; k > 1; \qquad \lim_{n \to \infty} c_{n,k} = 1.$$
+
+
+- Используем критерий Коши:
+  $$|u_m(x) - u_n(x)| = \left| \sum_{k=0}^m c_{m,k} \cdot \frac{x^k}{k!} - \sum_{k=0}^n c_{n,k} \cdot \frac{x^k}{k!} \right| \le \left\{ \begin{array}{c} k_0 \text{ выберем} \\ \text{позже} \end{array} \right\} \le$$
+  $$\le \left| \sum_{k=1}^{k_0 - 1} (c_{m,k} - c_{n,k}) \cdot \frac{x^k}{k!} \right| + \left| \sum_{k=k_0}^m c_{m,k} \cdot \frac{x^k}{k!} \right| + \left| \sum_{k=k_0}^n c_{n,k} \cdot \frac{x^k}{k!} \right| \le$$
+  $$\le \sum_{k=1}^{k_0 - 1} |c_{m,k} - c_{n,k}| \cdot \frac{|x|^k}{k!} + \sum_{k=k_0}^m \underbrace{|c_{m,k}|}_{< 1} \cdot \frac{|x|^k}{k!} + \sum_{k=k_0}^n \underbrace{|c_{n,k}|}_{< 1} \cdot \frac{|x|^k}{k!} \le$$
+  $$\le \underbrace{\sum_{k=1}^{k_0 - 1} |c_{m,k} - c_{n,k}| \cdot \frac{|x|^k}{k!}}_{\substack{\text{в этой сумме} \\ \text{конечное число} \\ \text{слагаемых}}} + 2 \cdot \sum_{k=k_0}^{\max(m, n)} \frac{|x|^k}{k!}.$$
+
+
+- Пусть $\varepsilon > 0$ — произвольное. Выберем $k_0$ так, чтобы $\frac{|x|^{k_0}}{k_0!} < \frac{\varepsilon}{8}$ и $\frac{|x|}{k_0 + 1} < \frac{\varepsilon}{8} < \frac{1}{2}$.
+- Тогда (обозначив $L = \max(m, n)$):
+  $$2 \sum_{k=k_0}^L \frac{|x|^k}{k!} = 2 \cdot \left( \frac{|x|^{k_0}}{k_0!} + \frac{|x|^{k_0 + 1}}{k_0!(k_0 + 1)} + \dots + \frac{|x|^L}{k_0! \underbrace{(k_0 + 1)\dots L}_{> (k_0 + 1)^{L - k_0}}} \right) < 2 \frac{|x|^{k_0}}{k_0!} \left( 1 + \frac{|x|}{k_0 + 1} + \frac{|x|^2}{(k_0 + 1)^2} + \dots + \frac{|x|^{L - k_0}}{(k_0 + 1)^{L - k_0}} \right) =$$
+  *(геометрическая прогрессия, $q = \frac{|x|}{k_0 + 1} < 1$)*
+  $$= 2 \cdot \frac{|x|^{k_0}}{k_0!} \cdot \frac{1 - \left(\frac{|x|}{k_0 + 1}\right)^{L + 1 - k_0}}{1 - \frac{|x|}{k_0 + 1}} < 2 \cdot \frac{|x|^{k_0}}{k_0!} \cdot \frac{1}{1 - \frac{|x|}{k_0 + 1}} < 2 \cdot \frac{\varepsilon}{8} \cdot \frac{1}{1 - \frac{1}{2}} = \frac{\varepsilon}{2}.$$
+
+
+- Оценим первое слагаемое. Так как $c_{m,k} \to 1$ при $m \to \infty$, то $\exists N : \forall m, n \ge N$
+  $$|c_{m,k} - c_{n,k}| = |(c_{m,k} - 1) + (1 - c_{n,k})| \le |c_{m,k} - 1| + |1 - c_{n,k}| < \frac{\varepsilon}{2 k_0 (|x| + 1)^{k_0}}.$$
+- Тогда
+  $$\sum_{k=1}^{k_0 - 1} |c_{m,k} - c_{n,k}| \cdot \frac{|x|^k}{k!} \le \sum_{k=1}^{k_0 - 1} \frac{\varepsilon}{2 k_0} \underbrace{\frac{|x|^k}{(|x| + 1)^{k_0}}}_{\le 1} \cdot \underbrace{\frac{1}{k!}}_{\le 1} \le \frac{\varepsilon}{2 k_0} \cdot \sum_{k=1}^{k_0 - 1} 1 < \frac{\varepsilon}{2}.$$
+- То есть $\exists N : \forall n, m \ge N \quad |u_m(x) - u_n(x)| < \varepsilon$, то есть $\{u_n(x)\}$ — фундаментальна, и по критерию Коши она сходится. $\blacksquare$
+
+
+- **Обозначение:** $\lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = \exp x$ *(экспоненциальная функция)*.
+
+
+- **Свойство:** $\exp x = \lim_{n \to \infty} \sum_{k=0}^n \frac{x^k}{k!}$.
+
+**Доказательство:**
+$$\left| \sum_{k=0}^n \frac{x^k}{k!} - u_n(x) \right| = \left| \sum_{k=0}^n \frac{x^k}{k!} - \sum_{k=0}^n \frac{c_{n,k} \cdot x^k}{k!} \right| = \left| \sum_{k=1}^n (1 - c_{n,k}) \cdot \frac{x^k}{k!} \right| \le \left\{ \begin{array}{c} k_0 \text{ выберем} \\ \text{позже} \end{array} \right\} \le$$
+$$\le \sum_{k=1}^{k_0 - 1} |1 - c_{n,k}| \cdot \frac{|x|^k}{k!} + \sum_{k=k_0}^n \underbrace{|1 - c_{n,k}|}_{< 1} \cdot \frac{|x|^k}{k!} \le (?)$$
+
+- $\text{Второе слагаемое} \le \sum_{k=k_0}^n \frac{|x|^k}{k!} = \frac{|x|^{k_0}}{k_0!} + \frac{|x|^{k_0 + 1}}{k_0!(k_0 + 1)} + \frac{|x|^{k_0 + 2}}{k_0!(k_0 + 1)(k_0 + 2)} + \dots + \frac{|x|^n}{k_0!(k_0 + 1)\dots n} \le$
+  $$\le \frac{|x|^{k_0}}{k_0!} \left( 1 + \frac{|x|}{k_0 + 1} + \frac{|x|^2}{(k_0 + 1)^2} + \dots + \frac{|x|^{n - k_0}}{(k_0 + 1)^{n - k_0}} \right) = \frac{|x|^{k_0}}{k_0!} \cdot \frac{1 - \left(\frac{|x|}{k_0 + 1}\right)^{n + 1 - k_0}}{1 - \frac{|x|}{k_0 + 1}} < \frac{|x|^{k_0}}{k_0!} \cdot \frac{1}{1 - \frac{|x|}{k_0 + 1}} = (*)$$
+  $$\left( q = \frac{|x|}{k_0 + 1} < 1 \right)$$
+- Пусть $\varepsilon > 0$ — произвольное. Выберем $k_0$ так, чтобы $\frac{|x|^{k_0}}{k_0!} < \frac{\varepsilon}{4}$ и $\frac{|x|}{k_0 + 1} < \frac{1}{2} < 1$. Тогда
+  $$(*) < \frac{\varepsilon}{4} \cdot \frac{1}{1 - \frac{1}{2}} = \frac{\varepsilon}{2}.$$
+
+
+- Оценим 1-е слагаемое. Так как $\lim_{n \to \infty} c_{n,k} = 1$, то $\exists N : \forall n \ge N \quad |1 - c_{n,k}| < \frac{\varepsilon}{2 k_0 (|x| + 1)^{k_0}}$.
+- Тогда
+  $$\sum_{k=1}^{k_0 - 1} |1 - c_{n,k}| \cdot \frac{|x|^k}{k!} \le \sum_{k=1}^{k_0 - 1} \frac{\varepsilon}{2 k_0} \underbrace{\frac{|x|^k}{(|x| + 1)^{k_0}}}_{< 1} \cdot \underbrace{\frac{1}{k!}}_{\le 1} \le \frac{\varepsilon}{2 k_0} \cdot k_0 = \frac{\varepsilon}{2}.$$
+- Следовательно, $\forall n \ge N \quad \left| \sum_{k=0}^n \frac{x^k}{k!} - u_n(x) \right| < \varepsilon$, то есть $\lim_{n \to \infty} \sum_{k=0}^n \frac{x^k}{k!} = \lim_{n \to \infty} u_n(x) = \exp x$. $\blacksquare$

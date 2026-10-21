@@ -2502,3 +2502,184 @@ $$\le \sum_{k=1}^{k_0 - 1} |1 - c_{n,k}| \cdot \frac{|x|^k}{k!} + \sum_{k=k_0}^n
 - Тогда
   $$\sum_{k=1}^{k_0 - 1} |1 - c_{n,k}| \cdot \frac{|x|^k}{k!} \le \sum_{k=1}^{k_0 - 1} \frac{\varepsilon}{2 k_0} \underbrace{\frac{|x|^k}{(|x| + 1)^{k_0}}}_{< 1} \cdot \underbrace{\frac{1}{k!}}_{\le 1} \le \frac{\varepsilon}{2 k_0} \cdot k_0 = \frac{\varepsilon}{2}.$$
 - Следовательно, $\forall n \ge N \quad \left| \sum_{k=0}^n \frac{x^k}{k!} - u_n(x) \right| < \varepsilon$, то есть $\lim_{n \to \infty} \sum_{k=0}^n \frac{x^k}{k!} = \lim_{n \to \infty} u_n(x) = \exp x$. $\blacksquare$
+
+- **Следствие.** $\left| \exp x - \sum_{k=0}^n \frac{x^k}{k!} \right| \le \frac{2}{(n+1)!} |x|^{n+1}$, если $\frac{|x|}{n+1} \le \frac{1}{2}$
+  *(Упражнение: можно посмотреть у С.К. Водопьянова. Указание: оценить через геометрическую прогрессию).*
+
+
+- **Теорема.** $\exp(u+v) = \exp u \cdot \exp v, \quad u,v \in \mathbb{R}$
+
+
+- **Лемма.** Если $\lim_{n \to \infty} x_n = a \in \mathbb{R}$, то $\lim_{n \to \infty} \left(1+\frac{x_n}{n}\right)^n = \exp a$.
+
+**Доказательство леммы:**
+
+- **1)** Рассмотрим сначала случай, когда $\lim_{n \to \infty} x_n = 0$, докажем, что $\lim_{n \to \infty} \left(1+\frac{x_n}{n}\right)^n = \exp 0 = 1$.
+
+  $\left(1+\frac{x_n}{n}\right)^n \ge 1+x_n$ по неравенству Бернулли (так как $x_n \to 0$, то существует $N_0$ такое, что для любого $n > N_0$ выполняется $\frac{x_n}{n} > -1$).
+
+  С другой стороны:
+  $$\left(1+\frac{x_n}{n}\right)^n = \frac{\left(1-\frac{x_n^2}{n^2}\right)^n}{\left(1-\frac{x_n}{n}\right)^n} \le \frac{1}{\left(1-\frac{x_n}{n}\right)^n} \le \frac{1}{1-x_n}$$
+  (где $\left(1-\frac{x_n}{n}\right)^n \ge 1-x_n$, так как существует $N_1$ такое, что для любого $n > N_1$ выполняется $-\frac{x_n}{n} > -1$).
+
+  Тогда для любого $n > \max(N_0, N_1)$ выполняется $1+x_n \le \left(1+\frac{x_n}{n}\right)^n \le \frac{1}{1-x_n}$. Следовательно, при $x_n \to 0$, $\lim_{n \to \infty} \left(1+\frac{x_n}{n}\right)^n = 1$.
+
+
+- **2)** Пусть $\lim_{n \to \infty} x_n = a$, то есть $x_n = a + y_n$, где $\lim_{n \to \infty} y_n = 0$. Тогда:
+  $$\left(1+\frac{x_n}{n}\right)^n = \left(1+\frac{a+y_n}{n}\right)^n = \left(1+\frac{a}{n}\right)^n \cdot \frac{\left(1+\frac{a+y_n}{n}\right)^n}{\left(1+\frac{a}{n}\right)^n} = \left(1+\frac{a}{n}\right)^n \cdot \left(\frac{n+a+y_n}{n+a}\right)^n =$$
+  $$= \left(1+\frac{a}{n}\right)^n \cdot \left(1+\frac{y_n}{n+a}\right)^n = \left(1+\frac{a}{n}\right)^n \cdot \left(1+\frac{\frac{y_n}{1+\frac{a}{n}}}{n}\right)^n \to \exp a \text{ при } n \to \infty$$
+  (по доказанному выше, так как $\frac{y_n}{1+\frac{a}{n}} \to 0$). $\blacksquare$
+
+**Доказательство теоремы:**
+  $$\exp u \cdot \exp v = \lim_{n \to \infty} \left(1+\frac{u}{n}\right)^n \cdot \lim_{n \to \infty} \left(1+\frac{v}{n}\right)^n = \lim_{n \to \infty} \left(\left(1+\frac{u}{n}\right)\left(1+\frac{v}{n}\right)\right)^n =$$
+  $$= \lim_{n \to \infty} \left(1+\frac{u}{n}+\frac{v}{n}+\frac{uv}{n^2}\right)^n = \lim_{n \to \infty} \left(1+\frac{u+v+\frac{uv}{n}}{n}\right)^n = \exp(u+v) \text{ по лемме. } \blacksquare$$
+
+
+- **Следствие.** $\exp x = e^x$
+
+**Доказательство:**
+- **1)** $\exp(x+y) = \exp x \cdot \exp y$ (по теореме выше).
+- **2)** $\exp x$ строго возрастает. Если $x < y$, то $\left(1+\frac{x}{n}\right)^n < \left(1+\frac{y}{n}\right)^n$ для любого $n > N$, где $N$ выбрано так, чтобы $0 < 1+\frac{x}{N} < 1+\frac{y}{N}$.
+  В пределе при $n \to \infty$: $\lim_{n \to \infty} \left(1+\frac{x}{n}\right)^n \le \lim_{n \to \infty} \left(1+\frac{y}{n}\right)^n$, следовательно $\exp x \le \exp y$.
+- **3)** $\exp 1 = \lim_{n \to \infty} \left(1+\frac{1}{n}\right)^n = e$.
+- По теореме о функциональном задании степени, $\exp x = e^x$. $\blacksquare$
+
+---
+
+### п.3. Последовательности комплексных чисел. Комплексная экспонента
+
+- Пусть $\{z_n\}$ — последовательность чисел $z_n \in \mathbb{C}$.
+
+
+- $\lim_{n \to \infty} z_n = z_0 \in \mathbb{C}$, если для любого $\varepsilon > 0$ существует $N$ такое, что для любого $n \ge N$ выполняется $|z_n - z_0| = \sqrt{(x_n - x_0)^2 + (y_n - y_0)^2} < \varepsilon$.
+  Здесь $z_n = x_n + iy_n, \quad z_0 = x_0 + iy_0$.
+
+
+- **Свойство.** $\lim_{n \to \infty} z_n = z_0 \iff \begin{cases} \lim_{n \to \infty} x_n = x_0 \\ \lim_{n \to \infty} y_n = y_0 \end{cases}$ *(Упражнение)*.
+
+
+- **Свойства сходящихся последовательностей:**
+  **1)** Предел сходящейся последовательности — единственный.
+  **2)** Если $\lim_{n \to \infty} z_n = z_0$, то существует $M > 0$ такое, что для любого $n$ выполняется $|z_n| \le M$.
+  **3)** Если $\lim_{n \to \infty} z_n = z_0$ и $\lim_{n \to \infty} w_n = w_0$, то:
+     * $\lim_{n \to \infty} (z_n \pm w_n) = z_0 \pm w_0$,
+     * $\lim_{n \to \infty} (z_n \cdot w_n) = z_0 \cdot w_0$;
+     * Если $w_0 \neq 0$, то $\lim_{n \to \infty} \frac{z_n}{w_n} = \frac{z_0}{w_0}$. *(Доказательство аналогично действительному случаю. $\blacksquare$)*
+
+
+- **Теорема (полярный признак сходимости).** Если $z_n = r_n(\cos\varphi_n + i\sin\varphi_n)$, где $\lim_{n \to \infty} r_n = r_0$ и $\lim_{n \to \infty} \varphi_n = \varphi_0$, то $\lim_{n \to \infty} z_n = r_0(\cos\varphi_0 + i\sin\varphi_0)$.
+
+**Доказательство:**
+Так как $\varphi_n \to \varphi_0$ при $n \to \infty$, то $\cos\varphi_n \to \cos\varphi_0$ и $\sin\varphi_n \to \sin\varphi_0$ (из свойства непрерывности функций $\cos x$ и $\sin x$ — позже!).
+Следовательно, $z_n = r_n\cos\varphi_n + i r_n\sin\varphi_n \to r_0\cos\varphi_0 + i r_0\sin\varphi_0$. $\blacksquare$
+
+---
+
+**Комплексная экспонента**
+$$\exp z = \lim_{n \to \infty} \left(1+\frac{z}{n}\right)^n$$
+
+- **Лемма.** $\lim_{n \to \infty} \left(1+\frac{iy}{n}\right)^n = \cos y + i\sin y, \quad y \in \mathbb{R}$.
+
+**Доказательство:**
+- $\left|1+\frac{iy}{n}\right| = \sqrt{1+\frac{y^2}{n^2}}$, следовательно $\left|\left(1+\frac{iy}{n}\right)^n\right| = \sqrt{\left(1+\frac{y^2}{n^2}\right)^n} = \sqrt{\left(1+\left(\frac{y}{n}\right)^2\right)^n} \to 1$ по лемме, так как $\lim_{n \to \infty} \frac{y^2}{n^2} = 0$.
+
+
+- $\varphi_n = \arg\left(\left(1+\frac{iy}{n}\right)^n\right) = n \cdot \arg\left(1+\frac{iy}{n}\right) = n \cdot \text{arctg}\frac{y/n}{1} = n \cdot \text{arctg}\frac{y}{n}$.
+
+
+- Известно, что $\sin x < x < \text{tg} x$ при $0 < x < \frac{\pi}{2}$ и $\sin \alpha = \text{tg} \alpha \cdot \cos \alpha = \frac{\text{tg} \alpha}{\sqrt{1+\text{tg}^2 \alpha}}$.
+
+
+- Если $y \ge 0$, то $\sin\left(\text{arctg}\frac{y}{n}\right) \le \text{arctg}\frac{y}{n} \le \text{tg}\left(\text{arctg}\frac{y}{n}\right)$.
+  $$\frac{\text{tg}\left(\text{arctg}\frac{y}{n}\right)}{\sqrt{1+\text{tg}^2\left(\text{arctg}\frac{y}{n}\right)}} \le \text{arctg}\frac{y}{n} \le \text{tg}\left(\text{arctg}\frac{y}{n}\right)$$
+  $$\frac{\frac{y}{n}}{\sqrt{1+\left(\frac{y}{n}\right)^2}} \le \text{arctg}\frac{y}{n} \le \frac{y}{n}$$
+  $$\frac{y}{\sqrt{1+\left(\frac{y}{n}\right)^2}} \le n \cdot \text{arctg}\frac{y}{n} \le y$$
+
+
+- Для $y < 0$ в силу нечетности функции знаки меняются на противоположные: $\frac{y}{\sqrt{1+\left(\frac{y}{n}\right)^2}} \ge n \cdot \text{arctg}\frac{y}{n} \ge y$.
+
+
+- По теореме о зажатой последовательности: $\lim_{n \to \infty} n \cdot \text{arctg}\frac{y}{n} = y$.
+
+
+- По полярному признаку сходимости, $\left(1+\frac{iy}{n}\right)^n \to 1 \cdot (\cos y + i\sin y)$ при $n \to \infty$. $\blacksquare$
+
+---
+
+- **Теорема.** Если $\lim_{n \to \infty} z_n = z_0 = x+iy$, то $\lim_{n \to \infty} \left(1+\frac{z_n}{n}\right)^n = e^x(\cos y + i\sin y)$.
+
+
+- **Следствие.** Если $z = x+iy$, то $\lim_{n \to \infty} \left(1+\frac{z}{n}\right)^n = e^x(\cos y + i\sin y) = \exp z = e^z$.
+
+**Доказательство:**
+- **1)** Пусть $z_n \to 0$. Тогда:
+  $$\left(1-\frac{|z_n|}{n}\right)^n \le \left|\left(1+\frac{z_n}{n}\right)^n\right| \le \left(1+\frac{|z_n|}{n}\right)^n$$
+  для любого $n > N$ (чтобы $1-\frac{|z_n|}{n} > 0$ для любого $n \ge N$). Следовательно, $\left|\left(1+\frac{z_n}{n}\right)^n\right| \to 1$ (по лемме).
+
+  Пусть $z_n = x_n + iy_n \to 0$, тогда $1+\frac{z_n}{n} = \left(1+\frac{x_n}{n}\right) + i\frac{y_n}{n}$, где существует $N$ такое, что для любого $n \ge N$ выполняется $1+\frac{x_n}{n} > 0$.
+
+  Тогда $\arg\left(\left(1+\frac{z_n}{n}\right)^n\right) = n \cdot \arg\left(1+\frac{z_n}{n}\right) = n \cdot \text{arctg} \frac{\frac{y_n}{n}}{1+\frac{x_n}{n}} = n \cdot \text{arctg} \frac{y_n}{n+x_n}$.
+
+  Так как $|\text{arctg} x| \le |x|$, то $\left|n \cdot \text{arctg} \frac{y_n}{n+x_n}\right| \le n \cdot \left|\frac{y_n}{n+x_n}\right| = \frac{n}{n} \frac{|y_n|}{\left|1+\frac{x_n}{n}\right|} \to 0$ при $n \to \infty$.
+
+  По полярному признаку, $\left(1+\frac{z_n}{n}\right)^n \to 1 \cdot (\cos 0 + i\sin 0) = 1$ при $n \to \infty$.
+
+
+- **2)** Пусть $z_n \to z \in \mathbb{C}$, тогда $z_n = z + \alpha_n = x + iy + \alpha_n$, где $\alpha_n \to 0$.
+
+  Рассмотрим:
+  $$\left(1+\frac{z_n}{n}\right)^n = \left(1+\frac{x+iy+\alpha_n}{n}\right)^n = \left(1+\frac{x}{n}\right)^n \cdot \left(1+\frac{iy}{n}\right)^n \cdot \frac{\left(1+\frac{x+iy+\alpha_n}{n}\right)^n}{\left(1+\frac{x}{n}\right)^n\left(1+\frac{iy}{n}\right)^n}$$
+
+  Здесь $\left(1+\frac{x}{n}\right)^n \to e^x$, $\left(1+\frac{iy}{n}\right)^n \to \cos y + i\sin y$.
+
+  Дробь преобразуется:
+  $$\left( \frac{n+x+iy+\alpha_n}{n+x+iy+\frac{ixy}{n}} \right)^n = \left( 1 + \frac{\alpha_n - \frac{ixy}{n}}{n+x+iy+\frac{ixy}{n}} \right)^n = \left( 1 + \frac{\frac{\alpha_n - \frac{ixy}{n}}{n}}{1+\frac{x+iy}{n}+\frac{ixy}{n^2}} \right)^n \to 1 \text{ при } n \to \infty$$
+  (по выше доказанному). $\blacksquare$
+
+---
+
+- **Замечание.** $\exp z = e^z = e^{x+iy} = e^x(\cos y + i\sin y)$
+- **Замечание.** $\exp(z_1+z_2) = \exp z_1 \cdot \exp z_2$
+- **Формула Эйлера:** $e^{\pi i} + 1 = 0$
+
+---
+
+## §8. Основные принципы анализа и топология во множестве действительных чисел
+
+### п.1. Основные леммы
+
+Лемма о вложенных отрезках (в §4).
+
+- **Теорема (о пересекающихся отрезках):** Пересечение любой совокупности пересекающихся отрезков является отрезком (следовательно, непустое) *(Упражнение)*.
+
+
+- **Лемма о конечном покрытии (принцип Бореля — Лебега):** Из любой системы интервалов, покрывающих замкнутый отрезок, то есть $[a,b] \subset \bigcup_{\alpha \in I} (a_\alpha, b_\alpha)$, можно выбрать подсистему, покрывающую этот отрезок, то есть существует конечное множество $\alpha_1, \alpha_2, \dots, \alpha_n$:
+  $$[a,b] \subset \bigcup_{k=1}^n (a_{\alpha_k}, b_{\alpha_k})$$
+
+**Доказательство:**
+
+- Пусть $S = \{U\}$ — система интервалов, покрывающих отрезок $[a,b]$.
+
+
+- Предположим, что из $\{U\}$ нельзя выбрать конечную подсистему, покрывающую $[a,b]$.
+
+
+- Разделим $[a,b]$ пополам, обозначим через $[a_1, b_1]$ ту из половин $[a, \frac{a+b}{2}], [\frac{a+b}{2}, b]$, которую нельзя покрыть конечным числом интервалов из $\{U\}$. Далее, делим $[a_1, b_1]$ пополам, обозначим через $[a_2, b_2]$ ту из половин, для которой нельзя выбрать конечную подсистему, покрывающую отрезок, и так далее.
+
+
+- Получим последовательность вложенных отрезков: $[a_1, b_1] \supset [a_2, b_2] \supset \dots \supset [a_n, b_n] \supset \dots$, никакая из них не допускает покрытия конечным набором интервалов из $\{U\}$.
+
+
+- Длина отрезка $[a_n, b_n]$ равна $\frac{b-a}{2^n} \to 0$ при $n \to \infty$. По лемме о вложенных отрезках, существует $c \in [a_n, b_n]$ для любого $n$.
+
+
+- Так как $c \in [a,b]$, то существует интервал $(\alpha, \beta) \in S$ такой, что $c \in (\alpha, \beta)$.
+
+
+- Пусть $\varepsilon = \min(c-\alpha, \beta-c)$. Так как $\lim_{n \to \infty} b_n = c$ и $\lim_{n \to \infty} a_n = c$, то существует $N$ такое, что для любого $n > N$ выполняется $|b_n - c| < \varepsilon$ и $|c - a_n| < \varepsilon$.
+
+
+- Следовательно, $\alpha \le c - \varepsilon < a_n \le b_n < c + \varepsilon \le \beta$, то есть для любого $n > N$ отрезок $[a_n, b_n] \subset (\alpha, \beta)$.
+
+
+- Отрезок $[a_n, b_n]$ покрыт одним интервалом $(\alpha, \beta)$ — противоречие. $\blacksquare$

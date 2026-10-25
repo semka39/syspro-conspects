@@ -2683,3 +2683,179 @@ $$\exp z = \lim_{n \to \infty} \left(1+\frac{z}{n}\right)^n$$
 
 
 - Отрезок $[a_n, b_n]$ покрыт одним интервалом $(\alpha, \beta)$ — противоречие. $\blacksquare$
+
+### п. 2. Окрестность точки
+
+- **Окрестность точки** $a \in \mathbb{R}$: любой интервал $(\alpha, \beta) \ni a$, где $\alpha, \beta \in \mathbb{R}$.
+
+
+- **Элементарная окрестность** ($\varepsilon$-окрестность) точки $a \in \mathbb{R}$: симметричный интервал $(a-\varepsilon; a+\varepsilon) = U_\varepsilon(a)$.
+
+
+- **Проколотая $\varepsilon$-окрестность** точки $a$: $\mathring{U}_\varepsilon(a) = (a-\varepsilon; a+\varepsilon) \setminus \{a\}$.
+
+
+  * $\varepsilon$-окрестность точки $+\infty$: $\left(\frac{1}{\varepsilon}; +\infty\right]$
+  * $\varepsilon$-окрестность точки $-\infty$: $\left[-\infty; -\frac{1}{\varepsilon}\right)$
+  * Проколотая $\varepsilon$-окрестность точки $+\infty$: $\mathring{U}_\varepsilon(+\infty) = \left(\frac{1}{\varepsilon}; +\infty\right)$
+  * Проколотая $\varepsilon$-окрестность точки $-\infty$: $\mathring{U}_\varepsilon(-\infty) = \left(-\infty; -\frac{1}{\varepsilon}\right)$
+
+**Свойства:**
+
+- **1)** Если $a \neq b$, то $\exists \varepsilon > 0$: $\varepsilon$-окрестности точек $a$ и $b$ не пересекаются.
+  Если $a, b \in \mathbb{R}$, то выберем $\varepsilon < \frac{|b-a|}{2}$.
+  Если $a \in \mathbb{R}, b = +\infty$, то выберем $\begin{cases} a+\varepsilon < 2|a| \\ \frac{1}{\varepsilon} > 2|a| \end{cases}$, откуда $\varepsilon < \min\left(|a|, \frac{1}{2|a|}\right)$. 
+  Остальные случаи — аналогично.
+
+
+- **2)** $\lim_{n \to \infty} x_n = a \iff \forall \varepsilon > 0 \quad \exists N: \forall n > N \quad x_n \in U_\varepsilon(a)$. 
+  (топологическое определение предела, как для $a \in \mathbb{R}$, так и для $a = \pm\infty$)
+
+
+- **3)** Пересечение двух окрестностей (элементарных окрестностей) точки $a$ является окрестностью (элементарной окрестностью) точки $a$.
+  * $a \in \mathbb{R}, \quad U_{\varepsilon_1}(a) \cap U_{\varepsilon_2}(a) = U_\varepsilon(a), \quad \varepsilon = \min(\varepsilon_1, \varepsilon_2)$
+  * $a = +\infty, \quad U_{\varepsilon_1}(+\infty) \cap U_{\varepsilon_2}(+\infty) = U_\varepsilon(+\infty), \quad \varepsilon = \min(\varepsilon_1, \varepsilon_2)$, так как $\begin{cases} x > \frac{1}{\varepsilon_1} \\ x > \frac{1}{\varepsilon_2} \end{cases} \implies x > \max\left(\frac{1}{\varepsilon_1}, \frac{1}{\varepsilon_2}\right) = \frac{1}{\min(\varepsilon_1, \varepsilon_2)}$.
+  * Для $a = -\infty$ и для несимметричных окрестностей — аналогично.
+
+
+- **4)** Если $a \in (\alpha, \beta)$, то существует $U_\varepsilon(a) \subset (\alpha, \beta)$. 
+  Возьмём $\varepsilon < \min(|a-\alpha|, |\beta-a|) > 0$.
+
+---
+
+### п. 3. Открытые и замкнутые множества
+
+- **Определение.** Точка $x \in A$ называется **внутренней точкой** множества $A \subset \overline{\mathbb{R}}$, если $\exists \varepsilon > 0: U_\varepsilon(x) \subset A$ (точка входит во множество вместе с некоторой окрестностью).
+  Множество всех внутренних точек множества называется **внутренностью множества**, обозначается $\text{int } A$. 
+  Замечание: $\text{int } A \subset A$.
+
+
+- **Определение.** Множество называется **открытым**, если все его точки внутренние, то есть $\text{int } A = A$.
+  **Примеры:** 
+  * $(\alpha, \beta)$ — открытое множество (из свойства 4), где $-\infty \le \alpha < \beta \le +\infty$
+  * $\bigcup_{n=1}^m (\alpha_n, \beta_n)$ — открытое множество (где $(\alpha_n, \beta_n)$ — непересекающиеся интервалы).
+
+
+- **Определение.** Точка $a \in \overline{\mathbb{R}}$ называется **предельной точкой** множества $A \subset \overline{\mathbb{R}}$, если $\forall \varepsilon > 0: \mathring{U}_\varepsilon(a) \cap A \neq \varnothing$ (любая окрестность точки $a$ содержит точки множества $A$, отличные от $a$).
+  Множество всех предельных точек множества $A$ обозначается $\text{Lim } A$.
+
+
+- **Определение.** **Замыкание множества** $A$ — множество $\overline{A} = A \cup \text{Lim } A$.
+
+
+- **Определение.** Множество $A$ называется **замкнутым**, если оно содержит все свои предельные точки, то есть $\text{Lim } A \subset A$, или $\overline{A} = A$.
+  **Примеры:**
+  * $[\alpha, \beta]$ — замкнутое множество.
+  * $A = (\alpha, \beta)$ — не замкнутое множество, так как $\alpha, \beta \in \text{Lim } A$, но $\alpha, \beta \notin A$. При этом $\overline{(\alpha, \beta)} = [\alpha, \beta]$.
+  * $[\alpha; +\infty)$ — замкнутое в $\mathbb{R}$, но не замкнутое в $\overline{\mathbb{R}}$, так как $+\infty$ — предельная точка множества.
+
+
+- **Определение.** $a \in A$ — **изолированная точка** множества $A$, если $\exists \varepsilon > 0: U_\varepsilon(a) \cap A = \{a\}$, то есть $a \in A$ и $a \notin \text{Lim } A$.
+
+**Примеры:**
+
+- **1)** $A = (3; 4] \cup \{5\}$. Не открытое, не замкнутое. 
+  $5 \in A$ — изолированная точка. 
+  $\text{int } A = (3; 4)$. 
+  $\text{Lim } A = [3; 4]$ (заметим, что $3 \in \text{Lim } A$, хотя $3 \notin A$). 
+  $\overline{A} = [3; 4] \cup \{5\}$.
+
+
+- **2)** $A = \left\{\frac{1}{n} \mid n \in \mathbb{N}\right\} = \left\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots\right\}$. 
+  Все точки множества $A$ — изолированные, $\text{int } A = \varnothing$. 
+  Единственная предельная точка: $0$, $\text{Lim } A = \{0\}$, $\overline{A} = A \cup \{0\}$.
+
+
+- **3)** $A = \mathbb{Q}$. 
+  $\text{Lim } A = \overline{\mathbb{R}}$, $\overline{A} = \overline{\mathbb{R}}$, $\text{int } A = \varnothing$, изолированных точек нет.
+
+---
+
+**Лемма.** 
+$$a \in \text{Lim } A \iff \exists \text{ последовательность } \{x_n\}: x_n \in A \; \forall n, \; x_n \neq a \; \forall n, \text{ и } \lim_{n \to \infty} x_n = a.$$
+
+**Доказательство:**
+$\implies$ Пусть $a \in \text{Lim } A$.
+Для $\varepsilon = 1 \quad \exists x_1 \in \mathring{U}_1(a) \cap A$
+Для $\varepsilon = \frac{1}{2} \quad \exists x_2 \in \mathring{U}_{1/2}(a) \cap A$
+... и так далее.
+Для $\varepsilon = \frac{1}{k} \quad \exists x_k \in \mathring{U}_{1/k}(a) \cap A$.
+$\forall k \quad x_k \in A, \; x_k \neq a$.
+$a \in \mathbb{R}; \quad x_k \in \left(a - \frac{1}{k}; a + \frac{1}{k}\right) \implies \lim_{k \to \infty} x_k = a$ (по теореме о зажатой последовательности).
+$a = +\infty; \quad x_k > k \implies \lim_{k \to \infty} x_k = +\infty$ ($-\infty$ доказывается аналогично).
+
+$\impliedby$ Пусть $\lim_{n \to \infty} x_n = a, \; x_n \in A, \; x_n \neq a \; \forall n$.
+То есть $\forall \varepsilon > 0 \quad \exists N: x_N \in U_\varepsilon(a), \; x_N \neq a, \; x_N \in A$, то есть $a \in \text{Lim } A$. $\blacksquare$
+
+---
+
+**Лемма о предельной точке** (принцип Больцано-Вейерштрасса)
+Всякое бесконечное ограниченное множество $X \subset \mathbb{R}$ имеет по крайней мере одну предельную точку в $\mathbb{R}$.
+
+**Доказательство:** 
+Пусть $X \subset \mathbb{R}$ — ограниченное множество, тогда $\exists [a; b] \supset X, \; a, b \in \mathbb{R}$. Покажем, что существует предельная точка множества $X$ на отрезке $[a; b]$.
+Предположим, что на $[a, b]$ предельных точек множества $X$ нет.
+Делим $[a, b]$ пополам, обозначим через $[a_1, b_1]$ ту половину, которая содержит бесконечное число точек множества $X$ (если обе половины такие, то выбираем любую). Пусть $x_1 \in [a_1, b_1] \cap X$ — произвольная.
+Повторяем процесс, на $n$-м шаге: $[a_n, b_n]$ — половина отрезка $[a_{n-1}, b_{n-1}]$, содержащая бесконечное число точек из $X$. 
+$x_n \in [a_n, b_n] \cap X$ — произвольная, $x_n \neq x_k \; \forall k = 1, 2, \dots, n-1$.
+Так как $\lim_{n \to \infty} (b_n - a_n) = \lim_{n \to \infty} \frac{b-a}{2^n} = 0$, то по лемме о вложенных отрезках существует $\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = c \in [a, b]$. 
+И так как $a_n \le x_n \le b_n \; \forall n$, то и $\lim_{n \to \infty} x_n = c$. (При необходимости перейдём к подпоследовательности $\{x_{n_k}\}: x_{n_k} \neq c \; \forall k, \; \lim_{k \to \infty} x_{n_k} = c$).
+Следовательно, $c \in \text{Lim } X$. $\blacksquare$
+
+*(Второе доказательство)*
+Предположим, что на $[a, b]$ предельных точек $X$ нет, то есть $\forall x \in [a, b] \quad \exists$ окрестность $U(x)$ такая, что $U(x) \cap X = \varnothing$ или $\{x\}$.
+Множество $\{U(x)\}_{x \in [a, b]}$ образует покрытие $[a, b]$ интервалами. По лемме Бореля-Лебега, существует конечный набор интервалов $\{U(x_i)\}_{i=1, \dots, n}$, так что $X \subset [a, b] \subset \bigcup_{i=1}^n U(x_i)$.
+Однако в каждом интервале $U(x_i)$ содержится лишь конечное число элементов множества $X$, а так как $X$ содержится в конечном объединении множеств $U(x_i)$, то само $X$ конечно — противоречие. $\blacksquare$
+
+**Следствие.** Любое множество в $\mathbb{R}$ имеет предельную точку в $\overline{\mathbb{R}}$. 
+(Если множество не ограничено сверху, то легко увидеть, что $+\infty$ — его предельная точка).
+
+---
+
+**Лемма.** 
+- **1)** Дополнение к открытому множеству — замкнутое. 
+- **2)** Дополнение к замкнутому множеству — открытое.
+
+**Доказательство** (в $\overline{\mathbb{R}}$):
+- **1)** Пусть $A \subset \overline{\mathbb{R}}$ — открытое, рассмотрим множество $B = \overline{\mathbb{R}} \setminus A = \{x \in \overline{\mathbb{R}} \mid x \notin A\}$.
+  Пусть $x \in \text{Lim } B$, докажем, что $x \in B$. Предположим, что это не так, и $x \in A$.
+  Так как $A$ — открытое, то существует окрестность $U_\varepsilon(x) \subset A$. Следовательно, $U_\varepsilon(x) \cap B = \varnothing$, то есть $x \notin \text{Lim } B$ — противоречие. Значит, $x \in B$, и $B$ — замкнутое. $\blacksquare$
+
+
+- **2)** Пусть $B \subset \overline{\mathbb{R}}$ — замкнутое, и $A = \overline{\mathbb{R}} \setminus B$. Докажем, что $A$ — открытое.
+  Пусть $x \in A$, предположим, что $x \notin \text{int } A$ ($x$ — не внутренняя точка $A$), то есть $\forall U_\varepsilon(x) \quad \exists y \in U_\varepsilon(x)$, но $y \notin A$, то есть $y \in \mathring{U}_\varepsilon(x) \cap B$.
+  Таким образом, $x \in \text{Lim } B$, но $x \notin A$, а значит, $x \notin B$ — противоречие замкнутости $B$.
+  Следовательно, $\forall x \in A$ — внутренняя, и $A$ — открытое. $\blacksquare$
+
+*Законы де Моргана:*
+$\overline{\mathbb{R}} \setminus \bigcap_\alpha A_\alpha = \bigcup_\alpha (\overline{\mathbb{R}} \setminus A_\alpha)$
+$\overline{\mathbb{R}} \setminus \bigcup_\alpha A_\alpha = \bigcap_\alpha (\overline{\mathbb{R}} \setminus A_\alpha)$
+
+---
+
+**Лемма.**
+- **1)** Объединение любой совокупности открытых множеств — открытое.
+- **2)** Пересечение конечного числа открытых множеств — открытое.
+- **3)** Пересечение любой совокупности замкнутых множеств — замкнутое.
+- **4)** Объединение конечного числа замкнутых множеств — замкнутое.
+
+*Примечание: пункты 3 и 4 следуют из (1) и (2) и предыдущей леммы, если перейти к дополнениям множеств.*
+
+**Доказательство:**
+- **1)** Пусть $A = \bigcup_\alpha A_\alpha$, где $A_\alpha$ — открытые. Пусть $x \in A$ — произвольная точка.
+  Тогда $x \in A_{\alpha}$ для некоторого $\alpha$. Так как $A_{\alpha}$ — открытое, то существует окрестность $U_\varepsilon(x) \subset A_{\alpha} \subset A$, то есть $A$ — открытое.
+
+
+- **2)** Пусть $A = A_1 \cap A_2$, где $A_1$ и $A_2$ — открытые. Пусть $x \in A$, то есть $x \in A_1$ и $x \in A_2$.
+  Так как $A_1$ — открытое, существует $U_{\varepsilon_1}(x) \subset A_1$. Так как $A_2$ — открытое, то существует $U_{\varepsilon_2}(x) \subset A_2$.
+  Тогда для $\varepsilon = \min(\varepsilon_1, \varepsilon_2)$ получим $U_\varepsilon(x) \cap U_\varepsilon(x) = U_\varepsilon(x) \subset A_1 \cap A_2 = A$, то есть $A$ — открытое.
+  Для $A_1 \cap A_2 \cap \dots \cap A_n$ доказывается аналогично. $\blacksquare$
+
+---
+
+**Теорема о замкнутости множества предельных точек.**
+Пусть $A \subset \overline{\mathbb{R}}$, тогда множество $\text{Lim } A$ — замкнуто в $\overline{\mathbb{R}}$.
+
+**Доказательство:** 
+Пусть $x \in \overline{\mathbb{R}}$ — предельная точка множества $\text{Lim } A$. Тогда для произвольного $\varepsilon > 0$:
+$\forall y \in \mathring{U}_\varepsilon(x) \cap \text{Lim } A$, то есть $y \in U_\varepsilon(x), \; y \neq x, \; y \in \text{Lim } A$...

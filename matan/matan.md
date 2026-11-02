@@ -2859,3 +2859,616 @@ $\overline{\mathbb{R}} \setminus \bigcup_\alpha A_\alpha = \bigcap_\alpha (\over
 **Доказательство:** 
 Пусть $x \in \overline{\mathbb{R}}$ — предельная точка множества $\text{Lim } A$. Тогда для произвольного $\varepsilon > 0$:
 $\forall y \in \mathring{U}_\varepsilon(x) \cap \text{Lim } A$, то есть $y \in U_\varepsilon(x), \; y \neq x, \; y \in \text{Lim } A$...
+
+* **Теорема.** Множество $\text{Lim } A$ замкнуто в $\overline{\mathbb{R}}$.
+  **Доказательство.** Пусть $x \in \text{Lim}(\text{Lim } A)$, тогда для произвольного $\varepsilon > 0 \quad \exists y \in \text{Lim } A: \quad y \in \mathring{U}_\varepsilon(x), \quad y \in \mathbb{R}$.
+  Выберем $\varepsilon_1 = \begin{cases} \min(y - (x - \varepsilon), x - y), & \text{если } y < x \\ \min(x + \varepsilon - y, y - x), & \text{если } y > x \end{cases}$
+  Тогда $\exists a \in A: \quad a \in \mathring{U}_{\varepsilon_1}(y) \subset \mathring{U}_\varepsilon(x)$, то есть $x \in \text{Lim } A$.
+  Для $x = +\infty$ или $-\infty$ — аналогично. $\blacksquare$
+
+* **Теорема (О предельной точке $\sup A$ ($\inf A$)).**
+  Если $\sup A \notin A$, то $\sup A \in \text{Lim } A$.
+  (Если $\inf A \notin A$, то $\inf A \in \text{Lim } A$).
+  **Доказательство.** Пусть $a = \sup A \notin A$. Тогда $\forall \varepsilon > 0 \quad \exists x \in A: \quad x > a - \varepsilon$, то есть $\forall \varepsilon > 0 \quad \exists x \in \mathring{U}_\varepsilon(a) \cap A$, это значит, что $a \in \text{Lim } A$.
+  Для $a = +\infty$. Если $\sup A = +\infty$, то $\forall \varepsilon > 0 \quad \exists x \in A: \quad x > \frac{1}{\varepsilon}$, то есть $x \in \mathring{U}_\varepsilon(+\infty) \cap A. \blacksquare$
+
+* **Следствие.** Если $A$ — замкнутое множество, то $\sup A, \inf A \in A$.
+  **Доказательство.** Если $\sup A \notin A$, то $\sup A \in \text{Lim } A \subset A$ — противоречие. $\blacksquare$
+* **Следствие.** $+\infty \in \text{Lim } A \iff A$ не ограничено сверху.
+  $(-\infty \in \text{Lim } A \iff A$ не ограничено снизу).
+
+* **Теорема.** Любое непустое открытое множество $U \subset \mathbb{R}$ есть объединение не более чем счетной совокупности взаимно непересекающихся интервалов.
+  **Доказательство.** Для $x, y \in U$ определим отношение эквивалентности: $x \sim y$, если $[x, y] \subset U$ (или $[y, x] \subset U$).
+  Легко проверить рефлексивность, симметричность, транзитивность.
+  Следовательно, множество $U$ распадается на непересекающиеся классы эквивалентности $U = \bigcup_\alpha U^\alpha$.
+  Пусть $x \in U$, тогда $\exists \varepsilon > 0: \quad U_\varepsilon(x) = (x - \varepsilon; x + \varepsilon) \subset U$.
+  То есть если $x \in U^\alpha$, то $U_\varepsilon(x) \subset U^\alpha$, то есть $U^\alpha$ — открытые множества.
+  **1)** Так как в каждом $U^\alpha$ найдется рациональная точка, и множества $U^\alpha$ не пересекаются, то совокупность $\{U^\alpha\}$ равномощна некоторому подмножеству множества $\mathbb{Q}$, а следовательно, она не более чем счетна.
+  **2)** Докажем, что $U^\alpha = (\inf U^\alpha; \sup U^\alpha)$, где $\inf U^\alpha, \sup U^\alpha \in \overline{\mathbb{R}}$.
+  Очевидно, что $U^\alpha \subset [\inf U^\alpha; \sup U^\alpha]$.
+  Если $\inf U^\alpha \in U^\alpha$, то $\inf U^\alpha > -\infty$ (так как $U \subset \mathbb{R}$).
+  $\exists$ окрестность $U_\varepsilon(\inf U^\alpha) \subset U^\alpha$, то есть $\exists x \in U^\alpha: \quad x < \inf U^\alpha$ — противоречие.
+  То есть $\inf U^\alpha, \sup U^\alpha \notin U^\alpha$, значит $U^\alpha \subset (\inf U^\alpha; \sup U^\alpha)$.
+  Пусть $x \in (\inf U^\alpha; \sup U^\alpha)$ — произвольная точка. Тогда из свойств $\sup, \inf$:
+  $\exists y, z \in U^\alpha: \quad \inf U^\alpha < y < x < z < \sup U^\alpha$. Так как $y, z \in U^\alpha$, то $y \sim z$, то есть $[y, z] \subset U$, значит, $x \in U$, и $[y, x] \subset U$, то есть $y \sim x$, то есть $x \in U^\alpha$.
+  Доказали, что $(\inf U^\alpha; \sup U^\alpha) \subset U^\alpha$. $\blacksquare$
+
+* **Теорема.** Если открытое множество $U$ есть объединение конечного числа интервалов, то его можно представить в виде объединения конечного числа попарно непересекающихся интервалов. (упражнение)
+
+---
+
+## Глава IV. Предел функции
+
+### §1. Определение предела функции
+
+#### п. 1. Топологическое и арифметическое определения предела функции в точке. Критерий Гейне
+
+* **Определение (топологическое).** Пусть $f: D \to \mathbb{R}$ определена на множестве $D \subset \mathbb{R}$, и пусть $a \in \text{Lim } D, a \in \overline{\mathbb{R}}$. Число $A \in \overline{\mathbb{R}}$ называется пределом функции $f(x)$ в точке $a$ по множеству $D$, $\lim_{x \to a, x \in D} f(x) = A$, если
+  
+  $$
+  \forall \varepsilon > 0 \quad \exists \delta > 0: \quad \forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \in U_\varepsilon(A).
+  $$
+
+* Пусть $a \in \mathbb{R}, A \in \mathbb{R}$. Запишем **арифметическое определение** предела функции:
+  $\lim_{x \to a, x \in D} f(x) = A$, если $\forall \varepsilon > 0 \quad \exists \delta > 0: \quad \forall x \in D$ таких, что $0 < |x - a| < \delta$, выполняется неравенство $|f(x) - A| < \varepsilon$.
+  * $a = +\infty; \lim_{x \to +\infty, x \in D} f(x) = A$, если $\forall \varepsilon > 0 \quad \exists \delta > 0: \quad \forall x \in D$ таких, что $x > \frac{1}{\delta}$, выполняется $|f(x) - A| < \varepsilon$.
+  * $a = -\infty; \lim_{x \to -\infty, x \in D} f(x) = A$, если $\forall \varepsilon > 0 \quad \exists \delta > 0: \quad \forall x \in D$ таких, что $x < -\frac{1}{\delta}$, выполняется $|f(x) - A| < \varepsilon$.
+  * $a \in \mathbb{R}, A = +\infty, \lim_{x \to a, x \in D} f(x) = +\infty$, если $\forall \varepsilon > 0 \quad \exists \delta > 0: \quad \forall x \in D$ таких, что $0 < |x - a| < \delta$, выполняется неравенство $f(x) > \frac{1}{\varepsilon}$.
+  * $A = -\infty, \lim_{x \to a, x \in D} f(x) = -\infty$, если $\forall \varepsilon > 0 \quad \exists \delta > 0: \quad \forall x \in D$ таких, что $0 < |x - a| < \delta$, выполняется неравенство $f(x) < -\frac{1}{\varepsilon}$.
+  * **Упражнение:** $\lim_{x \to \pm\infty, x \in D} f(x) = \pm\infty$ записать арифметическое определение.
+
+* **Замечание.** Обычно мы рассматриваем пределы по множеству $\mathbb{R}: \lim_{x \to a, x \in \mathbb{R}} f(x) = \lim_{x \to a} f(x)$.
+  **Односторонние пределы** функции в точке $a \in \mathbb{R}$:
+  * $\lim_{x \to a-0} f(x) = \lim_{x \to a, x < a} f(x) = f(a - 0)$ — предел слева.
+  * $\lim_{x \to a+0} f(x) = \lim_{x \to a, x > a} f(x) = f(a + 0)$ — предел справа.
+
+* **Свойство.** Пусть $a \in \text{Lim } D_1$, $a \in \text{Lim } D_2$. Тогда существует $\lim_{x \to a, x \in D_1 \cup D_2} f(x) \iff$ существует $\lim_{x \to a, x \in D_1} f(x) = \lim_{x \to a, x \in D_2} f(x)$. (упражнение)
+  * **Следствие.** $\lim_{x \to a} f(x)$ существует $\iff$ существует $\lim_{x \to a-0} f(x) = \lim_{x \to a+0} f(x)$.
+
+* **Теорема (Критерий Гейне существования предела функции в точке).**
+  Пусть $f: D \to \mathbb{R}$, $a \in \text{Lim } D$. Тогда $\lim_{x \to a, x \in D} f(x) = A \iff \forall$ последовательности $\{x_n\}: x_n \in D \quad \forall n$, $x_n \neq a$, и $\lim_{n \to \infty} x_n = a$, выполняется $\lim_{n \to \infty} f(x_n) = A$.
+  **Доказательство.** 
+  $\implies$ Пусть $\lim_{x \to a, x \in D} f(x) = A$. Рассмотрим произвольную последовательность $\{x_n\}: x_n \in D, x_n \neq a \quad \forall n$, и $\lim_{n \to \infty} x_n = a$.
+  (Так как $a \in \text{Lim } D$, то такая последовательность существует).
+  Пусть $\varepsilon > 0$ — произвольное. Тогда $\exists \delta > 0: \forall x \in D \cap \mathring{U}_\delta(a) \quad f(x) \in U_\varepsilon(A)$.
+  Так как $\lim_{n \to \infty} x_n = a$, то для $\delta > 0 \quad \exists N: \forall n \ge N \quad x_n \in U_\delta(a)$. При этом $x_n \neq a$ и $x_n \in D \quad \forall n$,
+  то есть $x_n \in \mathring{U}_\delta(a) \cap D$, следовательно, $\forall n \ge N \quad f(x_n) \in U_\varepsilon(A)$, то есть $\lim_{n \to \infty} f(x_n) = A$.
+
+  $\impliedby$ Пусть $\forall$ последовательности $\{x_n\}: x_n \in D, x_n \neq a \quad \forall n$, и $\lim_{n \to \infty} x_n = a$, выполнено $\lim_{n \to \infty} f(x_n) = A$.
+  Предположим, что $A \neq \lim_{x \to a, x \in D} f(x)$, то есть $\exists \varepsilon > 0: \forall \delta > 0 \quad \exists x \in D \cap \mathring{U}_\delta(a): \quad f(x) \notin U_\varepsilon(A)$.
+  Возьмем $\delta_n = \frac{1}{n}$, тогда $\exists x_n \in D \cap \mathring{U}_{\frac{1}{n}}(a): \quad f(x_n) \notin U_\varepsilon(A)$.
+  $x_n \in D, x_n \neq a$, и $\lim_{n \to \infty} x_n = a \quad \left( \text{Если } a \in \mathbb{R} \text{, то } |x_n - a| < \frac{1}{n} \implies a - \frac{1}{n} < x_n < a + \frac{1}{n}; \text{ Если } a = +\infty \text{, то } x_n > n, x_n \to +\infty \right)$.
+  Следовательно, $\lim_{n \to \infty} f(x_n) = A$.
+  $\forall n \quad f(x_n) \notin U_\varepsilon(A)$ — противоречие. $\left( \text{Если } A \in \mathbb{R} \text{, то } |f(x_n) - A| \ge \varepsilon \quad \forall n; \text{ Если } A = +\infty \text{, то } f(x_n) < \frac{1}{\varepsilon} \quad \forall n \right)$.
+  Следовательно, $\lim_{x \to a, x \in D} f(x) = A. \blacksquare$
+
+#### п. 2. Примеры
+
+* **1)** $\lim_{x \to 2} x^2 = 4 \quad, \forall \varepsilon > 0 \exists \delta > 0: \forall x \text{ из } 0 < |x - 2| < \delta \implies |x^2 - 4| < \varepsilon$
+  $|x^2 - 4| = |x - 2| \cdot |x + 2| < \varepsilon$
+  Предположим, что $|x - 2| < 1$, то есть $1 < x < 3$. Тогда $|x - 2| \cdot |x + 2| < |x - 2| \cdot 5 < \varepsilon$, если $|x - 2| < \frac{\varepsilon}{5}$.
+  Полагаем $\delta = \min\left(\frac{\varepsilon}{5}, 1\right)$.
+
+* **2)** **Функция Дирихле:** $D(x) = \begin{cases} 1, & x \in \mathbb{Q} \\ 0, & x \notin \mathbb{Q} \end{cases}$
+  $\forall a \in \mathbb{R}$ возьмем последовательности:
+  $\begin{cases} \{x_n'\}, & x_n' \in \mathbb{Q}, \lim_{n \to \infty} x_n' = a, \lim_{n \to \infty} f(x_n') = \lim_{n \to \infty} 1 = 1 \\ \{x_n''\}, & x_n'' \notin \mathbb{Q}, \lim_{n \to \infty} x_n'' = a, \lim_{n \to \infty} f(x_n'') = \lim_{n \to \infty} 0 = 0 \end{cases}$
+  По критерию Гейне, $\lim_{x \to a} D(x)$ не существует $\forall a$, при этом $\lim_{x \to a, x \in \mathbb{Q}} D(x) = 1, \lim_{x \to a, x \notin \mathbb{Q}} D(x) = 0$.
+
+* **3)** **Функция Римана:** $R(x) = \begin{cases} \frac{1}{n}, & x = \frac{m}{n} \text{ (несократимая дробь)} \\ 0, & x \notin \mathbb{Q} \end{cases}$
+  $\forall a \in \mathbb{R} \quad \lim_{x \to a} R(x) = 0$.
+  Пусть $\varepsilon > 0$ — произвольное, выберем $n \in \mathbb{N}: \frac{1}{n} < \varepsilon$.
+  Полагаем $\delta = \min \left\{ \left| a - \frac{k}{m} \right| : k < m \le n, \frac{k}{m} \text{ — несократимая} \right\} > 0$ (конечное множество).
+  Тогда если $x \in (a - \delta; a + \delta) \setminus \{a\}$, то либо $x \notin \mathbb{Q}$, тогда $|R(x)| = 0 < \varepsilon$;
+  либо $x \in \mathbb{Q}, x = \frac{p}{q}$, где $q > n$, тогда $|R(x)| = \frac{1}{q} < \frac{1}{n} < \varepsilon$. (дробь несократима).
+  То есть $\lim_{x \to a} R(x) = 0$.
+
+* **4)** $y = \sin \frac{1}{x}$ определена на $\mathbb{R} \setminus \{0\}$.
+  $\sin \frac{1}{x} = 0 \iff \frac{1}{x} = \pi n, n \in \mathbb{Z} \iff x = \frac{1}{\pi n}$.
+  Покажем, что $\lim_{x \to 0} \sin \frac{1}{x}$ не существует.
+  $\{x_n'\}, x_n' = \frac{1}{\pi n} \to 0$ при $n \to \infty, x_n' \neq 0, \lim_{n \to \infty} \sin \frac{1}{\frac{1}{\pi n}} = \lim_{n \to \infty} \sin \pi n = 0$.
+  $\{x_n''\}, x_n'' = \frac{1}{\frac{\pi}{2} + 2\pi n} \to 0$ при $n \to \infty, x_n'' \neq 0, \lim_{n \to \infty} \sin \left( \frac{\pi}{2} + 2\pi n \right) = 1$.
+  По критерию Гейне, предела не существует.
+
+* **5)**
+  
+  $$
+  \text{sign } x = \begin{cases} 1, & x > 0 \\ 0, & x = 0 \\ -1, & x < 0 \end{cases}
+  $$
+
+  $$
+  \lim_{x \to +0} \text{sign } x = 1, \quad \lim_{x \to -0} \text{sign } x = -1
+  $$
+
+* **6)**
+  
+  $$
+  \lim_{x \to +\infty} e^x = +\infty \quad \left( \text{так как } e^x = \lim_{n \to \infty} \sum_{k=0}^n \frac{x^k}{k!}, \text{ то при } x > 0 \quad e^x > 1 + x \right)
+  $$
+
+  $$
+  \lim_{x \to -\infty} e^x = \lim_{x \to -\infty} \frac{1}{e^{-x}} = \frac{1}{\lim_{x \to -\infty} e^{-x}} = \left\{ \frac{1}{+\infty} \right\} = 0
+  $$
+
+  (если $x \to -\infty$, то $-x \to +\infty$, и $e^{-x} \to +\infty$)
+
+* **7)**
+  
+  $$
+  \lim_{x \to -0} \frac{1}{x} = \left\{ \frac{1}{-0} \right\} = -\infty, \quad \lim_{x \to +0} \frac{1}{x} = \left\{ \frac{1}{+0} \right\} = +\infty
+  $$
+
+* **8)**
+  
+  $$
+  \lim_{x \to a} \frac{1}{(x-a)^2} = \left\{ \frac{1}{+0} \right\} = +\infty
+  $$
+
+### §2. Свойства функций, имеющих предел в точке
+
+#### п. 1. Общие свойства
+
+* **1)** Если $\lim_{x \to a, x \in D} f(x)$ существует, то он единственный.
+  $f: D \to \mathbb{R}, a \in \text{Lim } D$
+  **Доказательство.** Пусть $\lim_{x \to a, x \in D} f(x) = A_1$ и $\lim_{x \to a, x \in D} f(x) = A_2, \; A_1 \neq A_2$.
+  Для $\varepsilon > 0 \quad \exists \delta_1 > 0: \forall x \in \mathring{U}_{\delta_1}(a) \cap D \quad f(x) \in U_\varepsilon(A_1)$
+  и $\exists \delta_2 > 0: \forall x \in \mathring{U}_{\delta_2}(a) \cap D \quad f(x) \in U_\varepsilon(A_2)$
+  Выберем $\varepsilon > 0$ так, чтобы $U_\varepsilon(A_1) \cap U_\varepsilon(A_2) = \emptyset$
+  (Для $A_1, A_2 \in \mathbb{R}$ взять $\varepsilon < \frac{|A_1 - A_2|}{2}$, для остальных случаев — аналогично).
+  Выберем $\delta = \min(\delta_1, \delta_2)$, тогда $\mathring{U}_{\delta_1}(a) \cap \mathring{U}_{\delta_2}(a) = \mathring{U}_\delta(a)$, и $\forall x \in \mathring{U}_\delta(a)$
+  $f(x) \in U_\varepsilon(A_1) \cap U_\varepsilon(A_2) = \emptyset$ — противоречие. $\blacksquare$
+
+* **2)** **(Локальная ограниченность)** Если существует $\lim_{x \to a, x \in D} f(x) = A \in \mathbb{R}$ (конечный!), то $\exists \delta > 0$:
+  $f(x)$ ограничена на множестве $\mathring{U}_\delta(a) \cap D$.
+  (Если $\lim f(x) = A \in \mathbb{R}$, и $f(a) \in \mathbb{R}$, то $f(x)$ ограничена в некоторой окрестности $U_\delta(a)$ точки $a$).
+  **Доказательство.** Пусть $\varepsilon = 1$, тогда $\exists \delta > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) - A| < 1$,
+  $|f(x)| \le |f(x) - A| + |A| < |A| + 1 \quad \forall x \in \mathring{U}_\delta(a) \cap D$. $\blacksquare$
+
+* **3)** Если $\lim_{x \to a, x \in D} f(x) = 0$, и $g(x)$ ограничена на множестве $\mathring{U}_\delta(a) \cap D$, то $\lim_{x \to a, x \in D} f(x) \cdot g(x) = 0$.
+  **Доказательство.** Пусть $\exists M > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad |g(x)| \le M$.
+  Для произвольного $\varepsilon > 0 \quad \exists \delta_1 > 0 \quad \forall x \in \mathring{U}_{\delta_1}(a) \cap D \quad |f(x)| < \frac{\varepsilon}{M}$. Тогда, если обозначить $\delta = \min(\delta_0, \delta_1)$, то
+  $\forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) \cdot g(x)| < \frac{\varepsilon}{M} \cdot M = \varepsilon$, то есть $\lim_{x \to a, x \in D} f(x) \cdot g(x) = 0$. $\blacksquare$
+
+* **4)** Пусть $f(x) = c \quad \forall x \in \mathring{U}(a) \cap D$, тогда $\lim_{x \to a, x \in D} f(x) = c$. (упражнение)
+
+* **5)** $\lim_{x \to a, x \in D} f(x) = A \in \mathbb{R} \Leftrightarrow f(x) = A + \alpha(x)$, где $\lim_{x \to a, x \in D} \alpha(x) = 0$ (бесконечно малая). (упражнение)
+
+* **6)** Если $\lim_{x \to a, x \in D} f(x) = A$, то $\lim_{x \to a, x \in D} |f(x)| = |A|$.
+  **Доказательство.** $||f(x)| - |A|| \le |f(x) - A| < \varepsilon \quad \forall x \in \mathring{U}_\delta(a)$
+  Для $A = \pm \infty$ — аналогично. $\blacksquare$
+
+#### п. 2. Порядковые свойства
+
+* **Теорема 1 (О зажатой функции).** Пусть $f(x), g(x), h(x): D \to \mathbb{R}, a \in \text{Lim } D$, и пусть $\exists \delta > 0$:
+  $\forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \le g(x) \le h(x)$.
+  Пусть $\lim_{x \to a, x \in D} f(x) = \lim_{x \to a, x \in D} h(x) = A$. Тогда и $\lim_{x \to a, x \in D} g(x) = A$.
+  **Замечание.** Для $A = +\infty: \forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \le g(x)$. Если $\lim_{x \to a, x \in D} f(x) = +\infty$, то $\lim_{x \to a, x \in D} g(x) = +\infty$.
+  Для $A = -\infty$ — аналогично.
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n$, и $\lim_{n \to \infty} x_n = a$. Тогда $\exists N: \forall n \ge N$
+  $x_n \in \mathring{U}_\delta(a) \cap D$. Тогда $\forall n \ge N \quad f(x_n) \le g(x_n) \le h(x_n)$.
+  По критерию Гейне, $\lim_{n \to \infty} f(x_n) = \lim_{n \to \infty} h(x_n) = A$. По теореме о зажатой последовательности, $\lim_{n \to \infty} g(x_n) = A$.
+  Так как $\{x_n\}$ — произвольная, то из критерия Гейне следует $\lim_{x \to a, x \in D} g(x) = A$. $\blacksquare$
+
+* **Теорема 2 (Локальное сохранение знака).** Если $\lim_{x \to a, x \in D} f(x) = A > \alpha \in \mathbb{R}$, то $\exists \delta > 0$:
+  $\forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) > \alpha$
+  $[$если $\lim f(x) = A < \alpha$, то $f(x) < \alpha]$
+  **Доказательство.** Пусть $A \in \mathbb{R}$ (для $A = +\infty$ — аналогично). Пусть $\varepsilon = \frac{A - \alpha}{2} > 0$.
+  Тогда $\exists \delta > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) - A| < \varepsilon$,
+  $f(x) > A - \varepsilon = A - \frac{A - \alpha}{2} = \frac{A + \alpha}{2} > \alpha$. $\blacksquare$
+
+* **Теорема 3 (Предельный переход в неравенствах).**
+  Пусть $f(x) \le \alpha \quad \forall x \in \mathring{U}_\delta(a) \cap D$, и пусть $\lim_{x \to a, x \in D} f(x) = A$. Тогда $A \le \alpha$.
+  $[$если $f(x) \ge \alpha$, то $A \ge \alpha]$
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. Тогда $\exists N: \forall n \ge N$
+  $x_n \in \mathring{U}_\delta(a) \cap D$, следовательно, $\forall n \ge N \quad f(x_n) \le \alpha$.
+  По критерию Гейне, $\lim_{n \to \infty} f(x_n) = A$. Из теоремы о предельном переходе в неравенстве для последовательностей следует, что $A \le \alpha$. $\blacksquare$
+
+* **Следствие.** Пусть $\exists \delta > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \le g(x)$, и пусть $\lim_{x \to a} f(x) = A, \lim_{x \to a} g(x) = B$.
+  Тогда $A \le B$.
+  (применить теорему 3 к функции $h(x) = g(x) - f(x) \ge 0 \quad \forall x \in \mathring{U}_\delta(a) \cap D$, и использовать арифметические свойства).
+
+#### п. 3. Арифметические свойства
+
+Пусть $\lim_{x \to a, x \in D} f(x) = A, \lim_{x \to a, x \in D} g(x) = B$. Тогда:
+
+* **а)** Случай $\{\infty - \infty\}$
+  
+  $$
+  \lim_{x \to a, x \in D} (f(x) + g(x)) = \begin{cases} A + B, & \text{если } A, B \in \mathbb{R} \\ +\infty, & \text{если } A = +\infty, B > -\infty \\ -\infty, & \text{если } A = -\infty, B < +\infty \end{cases}
+  $$
+
+  $$
+  \lim_{x \to a, x \in D} (f(x) - g(x)) = A - B, \quad \text{если } A, B \in \mathbb{R}
+  $$
+
+* **б)** Случай $\{0 \cdot \infty\}$
+  
+  $$
+  \lim_{x \to a, x \in D} f(x) \cdot g(x) = \begin{cases} A \cdot B, & \text{если } A, B \in \mathbb{R} \\ \pm\infty \cdot \text{sign } B, & \text{если } A = \pm\infty, B \neq 0 \end{cases}
+  $$
+
+* **в)** Случай $\left\{\frac{\infty}{\infty}\right\}, \left\{\frac{0}{0}\right\}$
+  
+  $$
+  \lim_{x \to a, x \in D} \frac{f(x)}{g(x)} = \begin{cases} \frac{A}{B}, & \text{если } A \in \mathbb{R}, B \in \mathbb{R}, B \neq 0 \\ \pm\infty \cdot \text{sign } B, & \text{если } A = \pm\infty, B \in \mathbb{R}, B \neq 0 \\ 0, & \text{если } A \in \mathbb{R}, B = \pm\infty \end{cases}
+  $$
+
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. По критерию Гейне,
+  $\lim_{n \to \infty} f(x_n) = A, \lim_{n \to \infty} g(x_n) = B$. По арифметическим свойствам пределов последовательностей,
+  $\lim_{n \to \infty} (f(x_n) \pm g(x_n)) = A \pm B, \lim_{n \to \infty} (f(x_n) \cdot g(x_n)) = A \cdot B$, и при $B \neq 0 : \lim_{n \to \infty} \frac{f(x_n)}{g(x_n)} = \frac{A}{B}$
+  (со всеми оговорками).
+  Так как $\{x_n\}$ — произвольные последовательности, то из критерия Гейне следует утверждение теоремы. $\blacksquare$
+
+* **Замечание.** Пусть $\lim_{x \to a, x \in D} f(x) = A > 0 \quad (0 < A \le +\infty)$, и пусть $\lim_{x \to a, x \in D} g(x) = 0$, и $\forall x \in \mathring{U}_\delta(a) \cap D \quad g(x) > 0$. Тогда $\lim_{x \to a, x \in D} \frac{f(x)}{g(x)} = +\infty$. (упражнение)
+
+* **Свойство.** Если $\lim_{x \to a, x \in D} f(x) = A > 0$, то $\lim_{x \to a, x \in D} \sqrt[k]{f(x)} = \sqrt[k]{A}$.
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. По критерию Гейне, $\lim_{n \to \infty} f(x_n) = A$, и $\exists N : \forall n \ge N \quad f(x_n) > 0$. По свойствам последовательностей, $\lim_{n \to \infty} \sqrt[k]{f(x_n)} = \sqrt[k]{A}$. Из критерия Гейне следует утверждение. $\blacksquare$
+
+* **Замечание.** Если $\lim_{x \to a, x \in D} f(x) = A \in \mathbb{R}$, $k$ — нечетное, то $\lim_{x \to a, x \in D} \sqrt[k]{f(x)} = \sqrt[k]{A}$. Если $\lim_{x \to a, x \in D} f(x) = A \ge 0$, $k$ — четное, и $f(x) \ge 0 \quad \forall x \in \mathring{U}_\delta(a) \cap D$, то $\lim_{x \to a, x \in D} \sqrt[k]{f(x)} = \sqrt[k]{A}$.
+
+#### п. 4. Критерий Коши
+
+* **Теорема (Критерий Коши существования предела функции).** Пусть $f: D \to \mathbb{R}, a \in \text{Lim } D, a \in \overline{\mathbb{R}}$.
+  $\lim_{x \to a, x \in D} f(x)$ существует и конечен $\Leftrightarrow \forall \varepsilon > 0 \exists \delta > 0 : \forall x_1, x_2 \in \mathring{U}_\delta(a) \cap D \quad |f(x_1) - f(x_2)| < \varepsilon$.
+  (При $a \in \mathbb{R}: 0 < |x_1 - a| < \delta, 0 < |x_2 - a| < \delta$; при $a = +\infty: x_1 > \frac{1}{\delta}, x_2 > \frac{1}{\delta}$ и так далее).
+
+  **Доказательство.**
+  $\Rightarrow$ Пусть $\lim_{x \to a, x \in D} f(x) = A$. Тогда для произвольного $\varepsilon > 0 \exists \delta > 0 : \forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) - A| < \frac{\varepsilon}{2}$.
+  Тогда $\forall x_1, x_2 \in \mathring{U}_\delta(a) \cap D \quad |f(x_1) - f(x_2)| = |f(x_1) - A + A - f(x_2)| \le |f(x_1) - A| + |A - f(x_2)| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$.
+
+  $\Leftarrow$ Пусть справедливо утверждение критерия Коши. Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$.
+  Пусть $\varepsilon > 0$ — произвольное. Тогда $\exists N : \forall n \ge N \quad x_n \in \mathring{U}_\delta(a) \cap D$, где $\delta = \delta(\varepsilon)$ — выбрано согласно условию теоремы.
+  Тогда $\forall n, m \ge N \quad |f(x_n) - f(x_m)| < \varepsilon$, то есть последовательность $\{f(x_n)\}$ фундаментальна.
+  По критерию Коши для последовательностей, существует $\lim_{n \to \infty} f(x_n) = A \in \mathbb{R}$.
+  Пусть $\{x_n'\}$ — другая произвольная последовательность: $x_n' \in D, x_n' \neq a \quad \forall n, \lim_{n \to \infty} x_n' = a$. Тогда $\{f(x_n')\}$ — тоже фундаментальна, и существует $\lim_{n \to \infty} f(x_n') = A'$. Докажем, что $A = A'$.
+  $\exists N_1 : \forall n \ge N_1 \quad x_n \in \mathring{U}_\delta(a) \cap D$, и $\exists N_2 : \forall n \ge N_2 \quad x_n' \in \mathring{U}_\delta(a) \cap D$. Тогда $\forall n \ge N = \max(N_1, N_2) \quad |f(x_n) - f(x_n')| < \varepsilon$.
+  Перейдем к пределу при $n \to \infty : |A - A'| \le \varepsilon$. Так как $\varepsilon > 0$ — произвольно, то $|A - A'| = 0$, и $A' = A$.
+  То есть $\forall$ последовательности $\{x_n\} : x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$, выполнено $\lim_{n \to \infty} f(x_n) = A$. Из критерия Гейне следует $\lim_{x \to a, x \in D} f(x) = A. \blacksquare$
+
+#### п. 5. Предел сложной функции
+
+* $\lim_{x \to a} f(x) = b, \lim_{y \to b} g(y) = c$. Следует ли отсюда, что $\lim_{x \to a} g(f(x)) = c$? Оказывается, это не всегда верно.
+
+* **Пример.** $g(y) = \text{sign}^2 y = \begin{cases} 1, & y \neq 0 \\ 0, & y = 0 \end{cases} \quad \lim_{y \to 0} g(y) = 1$.
+
+* $f(x) = \begin{cases} x \cdot \sin \frac{1}{x}, & x \neq 0 \\ 0, & x = 0 \end{cases} \quad \lim_{x \to 0} f(x) = \lim_{x \to 0} \underbrace{x \cdot \sin \frac{1}{x}}_{\to 0 \text{ т.к. ограничена}} = 0$.
+
+* $g(f(x)) = \begin{cases} 1, & \text{если } x \cdot \sin \frac{1}{x} \neq 0, \text{ то есть } x \neq 0, x \neq \frac{1}{\pi n}, n \in \mathbb{Z} \\ 0, & \text{если } x \cdot \sin \frac{1}{x} = 0, \text{ то есть } x = 0 \text{ или } x = \frac{1}{\pi n}, n \in \mathbb{Z} \end{cases}$.
+
+* $\lim_{x \to 0} g(f(x))$ не существует, так как для $x_n' = \frac{1}{\pi n} \to 0 \quad \lim_{n \to \infty} g(f(x_n')) = 0$, а для $x_n'' = \frac{1}{\frac{\pi}{2} + 2\pi n} \xrightarrow[n \to \infty]{} 0 \quad \lim_{n \to \infty} g(f(x_n'')) = 1$.
+
+* **Теорема (О пределе сложной функции).** Пусть $f: D \to E, a \in \text{Lim } D, g: E \to \mathbb{R}, b \in \text{Lim } E$. Пусть $\lim_{x \to a, x \in D} f(x) = b, \lim_{y \to b, y \in E} g(y) = c$, и выполнено одно из двух условий:
+
+  1. $\exists \delta > 0 : \forall x \in \mathring{U}_\delta(a) \quad f(x) \neq b$;
+
+  2. $g(b) = c$.
+     Тогда $\lim_{x \to a, x \in D} (g \circ f)(x) = c$.
+     
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. Из критерия Гейне: $\lim_{n \to \infty} f(x_n) = b$.
+
+  * Пусть выполнено первое условие, тогда $\exists N : \forall n \ge N \quad x_n \in \mathring{U}_\delta(a)$, и тогда $f(x_n) \neq b$. Так как $f(x_n) \in E, f(x_n) \neq b \quad \forall n, \lim_{n \to \infty} f(x_n) = b$. Из критерия Гейне следует, что $\lim_{n \to \infty} g(f(x_n)) = c$. Так как $\{x_n\}$ — произвольная последовательность, то из критерия Гейне следует, что $\lim_{x \to a, x \in D} g(f(x)) = c$.
+
+  * Если выполнено второе условие. Если множество $\{n : f(x_n) = b\}$ бесконечно, то рассмотрим 2 подпоследовательности: $\{x_{n_k}'\} : f(x_{n_k}') \neq b \quad \forall k$, и $\{x_{n_m}''\} : f(x_{n_m}'') = b \quad \forall m$.
+    $\lim_{k \to \infty} g(f(x_{n_k}')) = c$ по доказанному выше.
+    $\lim_{m \to \infty} g(f(x_{n_m}'')) = g(b) = c$.
+    Если $\{x_{n_k}\}$ — произвольная подпоследовательность: $\lim_{k \to \infty} g(f(x_{n_k}))$ существует, то она имеет общую подпоследовательность хотя бы с одной из этих двух, а следовательно, $\lim_{k \to \infty} g(f(x_{n_k})) = c$. То есть множество частичных пределов последовательности $\{g(f(x_n))\}$ состоит из одного числа $c$, то есть $\lim_{n \to \infty} g(f(x_n)) = c$. Следовательно, $\lim_{x \to a, x \in D} g(f(x)) = c. \blacksquare$
+
+#### п. 6. Некоторые "стандартные" пределы
+
+* **1)** $\lim_{x \to a} \sin x = \sin a, \quad a \in \mathbb{R}$
+  $\forall \varepsilon > 0 \exists \delta > 0 : \forall x \text{ из } 0 < |x - a| < \delta \Rightarrow |\sin x - \sin a| < \varepsilon$.
+  $\left|2 \sin \frac{x - a}{2} \cos \frac{x + a}{2}\right| = 2 \cdot \left|\sin \frac{x - a}{2}\right| \cdot \left|\cos \frac{x + a}{2}\right| \le 2 \cdot \frac{|x - a|}{2} \cdot 1 = |x - a| < \varepsilon$, если $|x - a| < \delta = \varepsilon$. (Используется неравенство $|\sin x| \le |x|$).
+
+* **2)** $\lim_{x \to a} \cos x = \cos a$ (упражнение)
+
+* **3)** $\lim_{x \to +\infty} A^x = \lim_{x \to +\infty} e^{x \cdot \ln A} = \begin{cases} +\infty, & A > 1 \\ 0, & 0 < A < 1 \end{cases}$
+  $\lim_{x \to -\infty} A^x = \begin{cases} 0, & A > 1 \\ +\infty, & 0 < A < 1 \end{cases}$ (где $A > 0, A \neq 1$).
+
+* **4)** $\lim_{x \to a} A^x = A^a, \quad A > 0$.
+  (Для $A = 1$ — очевидно. Для $0 < A < 1$ заменим $A^x = \left(\frac{1}{A}\right)^{-x}$).
+  Пусть $A > 1$. Сначала докажем, что $\lim_{x \to +0} A^x = 1$. Пусть $\varepsilon > 0$ — произвольное. Так как $\lim_{n \to \infty} \sqrt[n]{A} = \lim_{n \to \infty} A^{\frac{1}{n}} = 1$, то $\exists N : \forall n \ge N \quad |A^{\frac{1}{n}} - 1| = A^{\frac{1}{n}} - 1 < \varepsilon$.
+  Пусть $\delta = \frac{1}{N}$, тогда $\forall x \in (0; \delta) \quad |A^x - 1| = A^x - 1 < A^{\frac{1}{N}} - 1 < \varepsilon$, (так как $y=A^x$ строго возрастает). То есть $\lim_{x \to +0} A^x = 1$.
+  Далее, $\lim_{x \to -0} A^x = \lim_{x \to -0} \frac{1}{A^{-x}} = \frac{1}{\lim_{x \to -0} A^{-x}} = [ -x = t \to +0 ] = \frac{1}{1} = 1$.
+  Далее, $\lim_{x \to a} A^x = \lim_{x \to a} A^{x-a} \cdot A^a = A^a \cdot \lim_{x \to a} A^{x-a} = A^a \cdot 1 = A^a$.
+
+* **5)** $\lim_{x \to a} \log_A x = \log_A a, \quad a > 0, A > 0, A \neq 1$ — следует из теоремы о непрерывности обратной функции (позже).
+
+* **6)** $\lim_{x \to +\infty} \frac{x}{a^x} = 0 \quad (a > 1)$.
+  Пусть $\{x_n\}$ — произвольная последовательность, $x_n \to +\infty$, тогда $\exists N : \forall n \ge N \quad 0 \le \frac{x_n}{a^{x_n}} \le \frac{[x_n] + 1}{a^{[x_n]}} = \frac{[x_n]}{a^{[x_n]}} + \frac{1}{a^{[x_n]}} \xrightarrow[n \to \infty]{} 0$, так как $\lim_{m \to \infty} \frac{m}{a^m} = 0$. (По теореме о зажатой последовательности).
+
+* **7)** $\lim_{x \to +\infty} \frac{x^\alpha}{a^x} = 0, \quad \alpha > 0, a > 1.$
+  $0 \le \frac{x^\alpha}{a^x} \le \frac{x^{[\alpha]+1}}{a^x} \quad \forall x \ge 1$
+  Обозначим $[\alpha]+1 = k \in \mathbb{N}$, тогда $\frac{x^k}{a^x} = \left( \frac{x}{(\sqrt[k]{a})^x} \right)^k \to 0$ при $x \to +\infty$. (По теореме о зажатой функции, $\lim_{x \to +\infty} \frac{x^\alpha}{a^x} = 0$, так как $\sqrt[k]{a} = A > 1$).
+
+* **8)** $\lim_{x \to +\infty} \frac{\log_a x}{x} = 0 \quad (a > 1)$
+  Сначала докажем: $\lim_{n \to \infty} \frac{\log_a n}{n} = 0$. Пусть $\varepsilon > 0$ — произвольное. Так как $\lim_{n \to \infty} \sqrt[n]{n} = 1$, то $\exists N: \forall n \ge N \quad |\sqrt[n]{n} - 1| = \sqrt[n]{n} - 1 < a^\varepsilon - 1$.
+  $1 \le \sqrt[n]{n} < a^\varepsilon, \quad \log_a 1 \le \log_a (n^{\frac{1}{n}}) < \log_a (a^\varepsilon)$
+  $\forall n \ge N \quad 0 \le \frac{1}{n} \log_a n < \varepsilon$, то есть $\lim_{n \to \infty} \frac{\log_a n}{n} = 0$.
+  Пусть $\{x_n\}$ — произвольная последовательность: $x_n \to +\infty$, тогда $\exists N: \forall n \ge N \quad 0 \le \frac{\log_a x_n}{x_n} \le \frac{\log_a([x_n]+1)}{[x_n]} = \frac{\log_a([x_n]+1)}{[x_n]+1} \cdot \frac{[x_n]+1}{[x_n]} \to 0$.
+  По теореме о зажатой последовательности: $\lim_{n \to \infty} \frac{\log_a x_n}{x_n} = 0$. Из критерия Гейне: $\lim_{x \to +\infty} \frac{\log_a x}{x} = 0$.
+
+* **9)** $\lim_{x \to +\infty} \frac{\log_a x}{x^\alpha} = \lim_{x \to +\infty} \frac{\frac{1}{\alpha} \log_a (x^\alpha)}{x^\alpha} = 0$, так как $t = x^\alpha \to +\infty \quad (a > 1, \alpha > 0)$.
+
+* **10)** $\lim_{x \to +0} x^\alpha \cdot \log_a x = 0, \quad \alpha > 0, a > 1$
+  $x = \frac{1}{t}, \quad t = \frac{1}{x} \to +\infty, \quad \lim_{t \to +\infty} \frac{1}{t^\alpha} \log_a\left(\frac{1}{t}\right) = -\lim_{t \to +\infty} \frac{\log_a t}{t^\alpha} = 0$.
+
+#### п. 7. Первый замечательный предел
+
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+$$
+**Доказательство.** Для $0 < x < \frac{\pi}{2}: \quad \sin x < x < \operatorname{tg} x = \frac{\sin x}{\cos x} ; \quad \cos x < \frac{\sin x}{x} < 1$
+Так как $\lim_{x \to +0} \cos x = 1$, то по теореме о зажатой функции: $\lim_{x \to +0} \frac{\sin x}{x} = 1$.
+Далее, $\lim_{x \to -0} \frac{\sin x}{x} = \lim_{x \to -0} \frac{\sin(-x)}{-x} = 1$, так как $t = -x \to +0$. Следовательно, $\lim_{x \to 0} \frac{\sin x}{x} = 1$. $\blacksquare$
+
+**Следствия:**
+
+* **1)** $\lim_{x \to 0} \frac{\operatorname{tg} x}{x} = \lim_{x \to 0} \frac{\sin x}{x \cdot \cos x} = \lim_{x \to 0} \frac{\sin x}{x} \cdot \lim_{x \to 0} \frac{1}{\cos x} = 1$.
+
+* **2)** $\lim_{x \to 0} \frac{\arcsin x}{x} = \left\{ \begin{matrix} t = \arcsin x \to 0 \\ x = \sin t \end{matrix} \right\} = \lim_{t \to 0} \frac{t}{\sin t} = \frac{1}{\lim_{t \to 0} \frac{\sin t}{t}} = 1$.
+  $\left( \lim_{x \to 0} \frac{t(x)}{\sin(t(x))} = 1, \text{ где } t(x) = \arcsin x \to 0 \text{ при } x \to 0, \text{ и } t(x) \neq 0 \text{ в проколотой окрестности точки } x=0 \right)$.
+
+* **3)** $\lim_{x \to 0} \frac{\operatorname{arctg} x}{x} = 1$ (упражнение).
+
+* **4)** $\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \lim_{x \to 0} \frac{(1 - \cos x)(1 + \cos x)}{x^2(1 + \cos x)} = \lim_{x \to 0} \frac{1 - \cos^2 x}{x^2(1 + \cos x)} = \lim_{x \to 0} \left( \frac{\sin x}{x} \right)^2 \cdot \lim_{x \to 0} \frac{1}{1 + \cos x} = 1 \cdot \frac{1}{2} = \frac{1}{2}$.
+
+#### п. 8. Второй замечательный предел
+
+$$
+\lim_{x \to \pm\infty} \left( 1 + \frac{1}{x} \right)^x = e
+$$
+**Доказательство.**
+
+1. Пусть $\{x_n\}$ — произвольная последовательность, $x_n \to +\infty$ при $n \to \infty$. Тогда $\exists N: \forall n \ge N \quad \left( 1 + \frac{1}{[x_n] + 1} \right)^{[x_n]} \le \left( 1 + \frac{1}{x_n} \right)^{x_n} \le \left( 1 + \frac{1}{[x_n]} \right)^{[x_n] + 1}$ (где $[x_n] \in \mathbb{N}$, так как $x_n > 0 \quad \forall n \ge N$).
+   Левая часть: $\frac{\left( 1 + \frac{1}{[x_n] + 1} \right)^{[x_n] + 1}}{\left( 1 + \frac{1}{[x_n] + 1} \right)^1} \to \frac{e}{1} = e$.
+   Правая часть: $\left( 1 + \frac{1}{[x_n]} \right)^{[x_n]} \cdot \left( 1 + \frac{1}{[x_n]} \right)^1 \to e \cdot 1 = e$.
+   Из теоремы о зажатой последовательности: $\lim_{n \to \infty} \left( 1 + \frac{1}{x_n} \right)^{x_n} = e$. Из критерия Гейне: $\lim_{x \to +\infty} \left( 1 + \frac{1}{x} \right)^x = e$.
+
+2. $\lim_{x \to -\infty} \left( 1 + \frac{1}{x} \right)^x = \lim_{x \to -\infty} \left( \frac{x+1}{x} \right)^x = \lim_{x \to -\infty} \left( \frac{x}{x+1} \right)^{-x} = \lim_{x \to -\infty} \left( \frac{x+1-1}{x+1} \right)^{-x} = \lim_{x \to -\infty} \left( 1 + \frac{-1}{x+1} \right)^{-x} = \lim_{x \to -\infty} \left( 1 + \frac{1}{-x-1} \right)^{-x-1} \cdot \left( 1 + \frac{1}{-x-1} \right)^{-1} = e \cdot 1 = e$.
+   (заменим $-x-1=t \to +\infty$ и воспользуемся пунктом (1)) $\blacksquare$
+
+**Следствия:**
+
+* **1)** $\lim_{x \to 0} (1+x)^{\frac{1}{x}} = e \quad \left(\text{Замена } \frac{1}{x} = t \to +\infty, \text{ если } x \to +0; \quad t \to -\infty, \text{ если } x \to -0\right)$
+
+* **2)** $\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+  Из "свойства непрерывности" $\ln x$: $\lim_{x \to 0} \frac{1}{x} \ln(1+x) = \lim_{x \to 0} \ln(1+x)^{\frac{1}{x}} = \ln \left( \lim_{x \to 0} (1+x)^{\frac{1}{x}} \right) = \ln e = 1$.
+
+* **3)** $\lim_{x \to 0} \frac{\log_a(1+x)}{x} = \frac{1}{\ln a} \quad \text{(упражнение)}$
+
+* **4)** $\lim_{x \to 0} \frac{e^x - 1}{x} = \left\{ \begin{matrix} \text{замена} \\ t = e^x - 1 \to 0 \\ x = \ln(1+t) \end{matrix} \right\} = \lim_{t \to 0} \frac{t}{\ln(1+t)} = \frac{1}{\lim_{t \to 0} \frac{\ln(1+t)}{t}} = 1$.
+  $\left( \lim_{x \to 0} \frac{t(x)}{\ln(1+t(x))} = 1, \text{ где } t(x) = e^x-1 \to 0 \text{ при } x \to 0, \text{ и } t(x) \neq 0 \text{ в проколотой окрестности } x=0 \right)$.
+
+* **5)** $\lim_{x \to 0} \frac{(1+x)^\alpha - 1}{x} = \lim_{x \to 0} \frac{e^{\alpha \ln(1+x)} - 1}{\alpha \ln(1+x)} \cdot \lim_{x \to 0} \frac{\alpha \ln(1+x)}{x} = 1 \cdot \alpha \cdot 1 = \alpha$.
+
+---
+*Организационная информация:*
+* Четверг, 5.11, $12^{40}$ поточная контрольная работа.
+* Задача: $\lim_{n \to \infty} x_n = a$ (на "3": 2 определения, 2 формулировки; на "4-5": 1 вопрос с доказательством).
+* Средний балл = $\frac{\text{Средний балл за семестр} + \left(\frac{1}{3} \text{потоковая} + \frac{2}{3} \text{экзамен}\right)}{2}$, если все оценки $\ge 2$.
+
+- **Пример 5)** 
+  $$ \text{sign } x = \begin{cases} 1, & x > 0 \\ 0, & x = 0 \\ -1, & x < 0 \end{cases} $$
+  $$ \lim_{x \to +0} \text{sign } x = 1, \quad \lim_{x \to -0} \text{sign } x = -1 $$
+
+- **Пример 6)** 
+  $$ \lim_{x \to +\infty} e^x = +\infty \quad \left( \text{так как } e^x = \lim_{n \to \infty} \sum_{k=0}^n \frac{x^k}{k!}, \text{ то при } x > 0 \quad e^x > 1 + x \right) $$
+  $$ \lim_{x \to -\infty} e^x = \lim_{x \to -\infty} \frac{1}{e^{-x}} = \frac{1}{\lim_{x \to -\infty} e^{-x}} = \left\{ \frac{1}{+\infty} \right\} = 0 $$
+  (если $x \to -\infty$, то $-x \to +\infty$, и $e^{-x} \to +\infty$)
+
+- **Пример 7)** 
+  $$ \lim_{x \to -0} \frac{1}{x} = \left\{ \frac{1}{-0} \right\} = -\infty, \quad \lim_{x \to +0} \frac{1}{x} = \left\{ \frac{1}{+0} \right\} = +\infty $$
+
+- **Пример 8)** 
+  $$ \lim_{x \to a} \frac{1}{(x-a)^2} = \left\{ \frac{1}{+0} \right\} = +\infty $$
+
+---
+
+### §2. Свойства функций, имеющих предел в точке
+
+#### п. 1. Общие свойства
+
+- **1)** Если $\lim_{x \to a, x \in D} f(x)$ существует, то он единственный.
+  $f: D \to \mathbb{R}, a \in \text{Lim } D$
+  **Доказательство.** Пусть $\lim_{x \to a, x \in D} f(x) = A_1$ и $\lim_{x \to a, x \in D} f(x) = A_2, \; A_1 \neq A_2$.
+  Для $\varepsilon > 0 \quad \exists \delta_1 > 0: \forall x \in \mathring{U}_{\delta_1}(a) \cap D \quad f(x) \in U_\varepsilon(A_1)$
+  и $\exists \delta_2 > 0: \forall x \in \mathring{U}_{\delta_2}(a) \cap D \quad f(x) \in U_\varepsilon(A_2)$
+  Выберем $\varepsilon > 0$ так, чтобы $U_\varepsilon(A_1) \cap U_\varepsilon(A_2) = \emptyset$
+  (Для $A_1, A_2 \in \mathbb{R}$ взять $\varepsilon < \frac{|A_1 - A_2|}{2}$, для остальных случаев — аналогично).
+  Выберем $\delta = \min(\delta_1, \delta_2)$, тогда $\mathring{U}_{\delta_1}(a) \cap \mathring{U}_{\delta_2}(a) = \mathring{U}_\delta(a)$, и $\forall x \in \mathring{U}_\delta(a)$
+  $f(x) \in U_\varepsilon(A_1) \cap U_\varepsilon(A_2) = \emptyset$ — противоречие. $\blacksquare$
+
+- **2)** (Локальная ограниченность) Если существует $\lim_{x \to a, x \in D} f(x) = A \in \mathbb{R}$ (конечный!), то $\exists \delta > 0$:
+  $f(x)$ ограничена на множестве $\mathring{U}_\delta(a) \cap D$.
+  (Если $\lim f(x) = A \in \mathbb{R}$, и $f(a) \in \mathbb{R}$, то $f(x)$ ограничена в некоторой окрестности $U_\delta(a)$ точки $a$).
+  **Доказательство.** Пусть $\varepsilon = 1$, тогда $\exists \delta > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) - A| < 1$,
+  $|f(x)| \le |f(x) - A| + |A| < |A| + 1 \quad \forall x \in \mathring{U}_\delta(a) \cap D$. $\blacksquare$
+
+- **3)** Если $\lim_{x \to a, x \in D} f(x) = 0$, и $g(x)$ ограничена на множестве $\mathring{U}_\delta(a) \cap D$, то $\lim_{x \to a, x \in D} f(x) \cdot g(x) = 0$.
+  **Доказательство.** Пусть $\exists M > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad |g(x)| \le M$.
+  Для произвольного $\varepsilon > 0 \quad \exists \delta_1 > 0 \quad \forall x \in \mathring{U}_{\delta_1}(a) \cap D \quad |f(x)| < \frac{\varepsilon}{M}$. Тогда, если обозначить $\delta = \min(\delta_0, \delta_1)$, то
+  $\forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) \cdot g(x)| < \frac{\varepsilon}{M} \cdot M = \varepsilon$, то есть $\lim_{x \to a, x \in D} f(x) \cdot g(x) = 0$. $\blacksquare$
+
+- **4)** Пусть $f(x) = c \quad \forall x \in \mathring{U}(a) \cap D$, тогда $\lim_{x \to a, x \in D} f(x) = c$. (упражнение)
+
+- **5)** $\lim_{x \to a, x \in D} f(x) = A \in \mathbb{R} \Leftrightarrow f(x) = A + \alpha(x)$, где $\lim_{x \to a, x \in D} \alpha(x) = 0$ (бесконечно малая). (упражнение)
+
+- **6)** Если $\lim_{x \to a, x \in D} f(x) = A$, то $\lim_{x \to a, x \in D} |f(x)| = |A|$.
+  **Доказательство.** $||f(x)| - |A|| \le |f(x) - A| < \varepsilon \quad \forall x \in \mathring{U}_\delta(a)$
+  Для $A = \pm \infty$ — аналогично. $\blacksquare$
+
+#### п. 2. Порядковые свойства
+
+- **Теорема 1 (О зажатой функции).** Пусть $f(x), g(x), h(x): D \to \mathbb{R}, a \in \text{Lim } D$, и пусть $\exists \delta > 0$:
+  $\forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \le g(x) \le h(x)$.
+  Пусть $\lim_{x \to a, x \in D} f(x) = \lim_{x \to a, x \in D} h(x) = A$. Тогда и $\lim_{x \to a, x \in D} g(x) = A$.
+  **Замечание.** Для $A = +\infty: \forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \le g(x)$. Если $\lim_{x \to a, x \in D} f(x) = +\infty$, то $\lim_{x \to a, x \in D} g(x) = +\infty$.
+  Для $A = -\infty$ — аналогично.
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n$, и $\lim_{n \to \infty} x_n = a$. Тогда $\exists N: \forall n \ge N$
+  $x_n \in \mathring{U}_\delta(a) \cap D$. Тогда $\forall n \ge N \quad f(x_n) \le g(x_n) \le h(x_n)$.
+  По критерию Гейне, $\lim_{n \to \infty} f(x_n) = \lim_{n \to \infty} h(x_n) = A$. По теореме о зажатой последовательности, $\lim_{n \to \infty} g(x_n) = A$.
+  Так как $\{x_n\}$ — произвольная, то из критерия Гейне следует $\lim_{x \to a, x \in D} g(x) = A$. $\blacksquare$
+
+- **Теорема 2 (Локальное сохранение знака).** Если $\lim_{x \to a, x \in D} f(x) = A > \alpha \in \mathbb{R}$, то $\exists \delta > 0$:
+  $\forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) > \alpha$
+  $[$если $\lim f(x) = A < \alpha$, то $f(x) < \alpha]$
+  **Доказательство.** Пусть $A \in \mathbb{R}$ (для $A = +\infty$ — аналогично). Пусть $\varepsilon = \frac{A - \alpha}{2} > 0$.
+  Тогда $\exists \delta > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) - A| < \varepsilon$,
+  $f(x) > A - \varepsilon = A - \frac{A - \alpha}{2} = \frac{A + \alpha}{2} > \alpha$. $\blacksquare$
+
+- **Теорема 3 (Предельный переход в неравенствах).**
+  Пусть $f(x) \le \alpha \quad \forall x \in \mathring{U}_\delta(a) \cap D$, и пусть $\lim_{x \to a, x \in D} f(x) = A$. Тогда $A \le \alpha$.
+  $[$если $f(x) \ge \alpha$, то $A \ge \alpha]$
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. Тогда $\exists N: \forall n \ge N$
+  $x_n \in \mathring{U}_\delta(a) \cap D$, следовательно, $\forall n \ge N \quad f(x_n) \le \alpha$.
+  По критерию Гейне, $\lim_{n \to \infty} f(x_n) = A$. Из теоремы о предельном переходе в неравенстве для последовательностей следует, что $A \le \alpha$. $\blacksquare$
+
+- **Следствие.** Пусть $\exists \delta > 0: \forall x \in \mathring{U}_\delta(a) \cap D \quad f(x) \le g(x)$, и пусть $\lim_{x \to a} f(x) = A, \lim_{x \to a} g(x) = B$.
+  Тогда $A \le B$.
+  (применить теорему 3 к функции $h(x) = g(x) - f(x) \ge 0 \quad \forall x \in \mathring{U}_\delta(a) \cap D$, и использовать арифметические свойства).
+
+#### п. 3. Арифметические свойства
+
+Пусть $\lim_{x \to a, x \in D} f(x) = A, \lim_{x \to a, x \in D} g(x) = B$. Тогда:
+
+- **а)** Случай $\{\infty - \infty\}$
+  $$ \lim_{x \to a, x \in D} (f(x) + g(x)) = \begin{cases} A + B, & \text{если } A, B \in \mathbb{R} \\ +\infty, & \text{если } A = +\infty, B > -\infty \\ -\infty, & \text{если } A = -\infty, B < +\infty \end{cases} $$
+  $$ \lim_{x \to a, x \in D} (f(x) - g(x)) = A - B, \quad \text{если } A, B \in \mathbb{R} $$
+
+- **б)** Случай $\{0 \cdot \infty\}$
+  $$ \lim_{x \to a, x \in D} f(x) \cdot g(x) = \begin{cases} A \cdot B, & \text{если } A, B \in \mathbb{R} \\ \pm\infty \cdot \text{sign } B, & \text{если } A = \pm\infty, B \neq 0 \end{cases} $$
+
+- **в)** Случай $\left\{\frac{\infty}{\infty}\right\}, \left\{\frac{0}{0}\right\}$
+  $$ \lim_{x \to a, x \in D} \frac{f(x)}{g(x)} = \begin{cases} \frac{A}{B}, & \text{если } A \in \mathbb{R}, B \in \mathbb{R}, B \neq 0 \\ \pm\infty \cdot \text{sign } B, & \text{если } A = \pm\infty, B \in \mathbb{R}, B \neq 0 \\ 0, & \text{если } A \in \mathbb{R}, B = \pm\infty \end{cases} $$
+
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. По критерию Гейне,
+  $\lim_{n \to \infty} f(x_n) = A, \lim_{n \to \infty} g(x_n) = B$. По арифметическим свойствам пределов последовательностей,
+  $\lim_{n \to \infty} (f(x_n) \pm g(x_n)) = A \pm B, \lim_{n \to \infty} (f(x_n) \cdot g(x_n)) = A \cdot B$, и при $B \neq 0 : \lim_{n \to \infty} \frac{f(x_n)}{g(x_n)} = \frac{A}{B}$
+  (со всеми оговорками).
+  Так как $\{x_n\}$ — произвольные последовательности, то из критерия Гейне следует утверждение теоремы. $\blacksquare$
+
+---
+
+*(Организационная информация)*
+*   чт, 5.11, $12^{40}$ поточная контрольная работа.
+*   Задача: $\lim_{n \to \infty} x_n = a$ (на "3": 2 определения, 2 формулировки; на "4-5": 1 вопрос с доказательством).
+*   Средний балл = $\frac{\text{Средний балл за семестр} + \left(\frac{1}{3} \text{потоковая} + \frac{2}{3} \text{экзамен}\right)}{2}$, если все оценки $\ge 2$.
+
+---
+
+- **Замечание.** Пусть $\lim_{x \to a, x \in D} f(x) = A > 0 \quad (0 < A \le +\infty)$, и пусть $\lim_{x \to a, x \in D} g(x) = 0$, и $\forall x \in \mathring{U}_\delta(a) \cap D \quad g(x) > 0$. Тогда $\lim_{x \to a, x \in D} \frac{f(x)}{g(x)} = +\infty$. (упражнение)
+
+- **Свойство.** Если $\lim_{x \to a, x \in D} f(x) = A > 0$, то $\lim_{x \to a, x \in D} \sqrt[k]{f(x)} = \sqrt[k]{A}$.
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. По критерию Гейне, $\lim_{n \to \infty} f(x_n) = A$, и $\exists N : \forall n \ge N \quad f(x_n) > 0$. По свойствам последовательностей, $\lim_{n \to \infty} \sqrt[k]{f(x_n)} = \sqrt[k]{A}$. Из критерия Гейне следует утверждение. $\blacksquare$
+
+- **Замечание.** Если $\lim_{x \to a, x \in D} f(x) = A \in \mathbb{R}$, $k$ — нечетное, то $\lim_{x \to a, x \in D} \sqrt[k]{f(x)} = \sqrt[k]{A}$. Если $\lim_{x \to a, x \in D} f(x) = A \ge 0$, $k$ — четное, и $f(x) \ge 0 \quad \forall x \in \mathring{U}_\delta(a) \cap D$, то $\lim_{x \to a, x \in D} \sqrt[k]{f(x)} = \sqrt[k]{A}$.
+
+#### п. 4. Критерий Коши
+
+- **Теорема (Критерий Коши существования предела функции).** Пусть $f: D \to \mathbb{R}, a \in \text{Lim } D, a \in \overline{\mathbb{R}}$.
+  $\lim_{x \to a, x \in D} f(x)$ существует и конечен $\Leftrightarrow \forall \varepsilon > 0 \exists \delta > 0 : \forall x_1, x_2 \in \mathring{U}_\delta(a) \cap D \quad |f(x_1) - f(x_2)| < \varepsilon$.
+  (При $a \in \mathbb{R}: 0 < |x_1 - a| < \delta, 0 < |x_2 - a| < \delta$; при $a = +\infty: x_1 > \frac{1}{\delta}, x_2 > \frac{1}{\delta}$ и так далее).
+  
+  **Доказательство.** 
+  $\Rightarrow$ Пусть $\lim_{x \to a, x \in D} f(x) = A$. Тогда для произвольного $\varepsilon > 0 \exists \delta > 0 : \forall x \in \mathring{U}_\delta(a) \cap D \quad |f(x) - A| < \frac{\varepsilon}{2}$.
+  Тогда $\forall x_1, x_2 \in \mathring{U}_\delta(a) \cap D \quad |f(x_1) - f(x_2)| = |f(x_1) - A + A - f(x_2)| \le |f(x_1) - A| + |A - f(x_2)| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$.
+  
+  $\Leftarrow$ Пусть справедливо утверждение критерия Коши. Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$.
+  Пусть $\varepsilon > 0$ — произвольное. Тогда $\exists N : \forall n \ge N \quad x_n \in \mathring{U}_\delta(a) \cap D$, где $\delta = \delta(\varepsilon)$ — выбрано согласно условию теоремы.
+  Тогда $\forall n, m \ge N \quad |f(x_n) - f(x_m)| < \varepsilon$, то есть последовательность $\{f(x_n)\}$ фундаментальна.
+  По критерию Коши для последовательностей, существует $\lim_{n \to \infty} f(x_n) = A \in \mathbb{R}$.
+  Пусть $\{x_n'\}$ — другая произвольная последовательность: $x_n' \in D, x_n' \neq a \quad \forall n, \lim_{n \to \infty} x_n' = a$. Тогда $\{f(x_n')\}$ — тоже фундаментальна, и существует $\lim_{n \to \infty} f(x_n') = A'$. Докажем, что $A = A'$.
+  $\exists N_1 : \forall n \ge N_1 \quad x_n \in \mathring{U}_\delta(a) \cap D$, и $\exists N_2 : \forall n \ge N_2 \quad x_n' \in \mathring{U}_\delta(a) \cap D$. Тогда $\forall n \ge N = \max(N_1, N_2) \quad |f(x_n) - f(x_n')| < \varepsilon$.
+  Перейдем к пределу при $n \to \infty : |A - A'| \le \varepsilon$. Так как $\varepsilon > 0$ — произвольно, то $|A - A'| = 0$, и $A' = A$.
+  То есть $\forall$ последовательности $\{x_n\} : x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$, выполнено $\lim_{n \to \infty} f(x_n) = A$. Из критерия Гейне следует $\lim_{x \to a, x \in D} f(x) = A. \blacksquare$
+
+#### п. 5. Предел сложной функции
+
+- $\lim_{x \to a} f(x) = b, \lim_{y \to b} g(y) = c$. Следует ли отсюда, что $\lim_{x \to a} g(f(x)) = c$? Оказывается, это не всегда верно.
+- **Пример.** $g(y) = \text{sign}^2 y = \begin{cases} 1, & y \neq 0 \\ 0, & y = 0 \end{cases} \quad \lim_{y \to 0} g(y) = 1$.
+- $f(x) = \begin{cases} x \cdot \sin \frac{1}{x}, & x \neq 0 \\ 0, & x = 0 \end{cases} \quad \lim_{x \to 0} f(x) = \lim_{x \to 0} \underbrace{x \cdot \sin \frac{1}{x}}_{\to 0 \text{ т.к. ограничена}} = 0$.
+- $g(f(x)) = \begin{cases} 1, & \text{если } x \cdot \sin \frac{1}{x} \neq 0, \text{ то есть } x \neq 0, x \neq \frac{1}{\pi n}, n \in \mathbb{Z} \\ 0, & \text{если } x \cdot \sin \frac{1}{x} = 0, \text{ то есть } x = 0 \text{ или } x = \frac{1}{\pi n}, n \in \mathbb{Z} \end{cases}$.
+- $\lim_{x \to 0} g(f(x))$ не существует, так как для $x_n' = \frac{1}{\pi n} \to 0 \quad \lim_{n \to \infty} g(f(x_n')) = 0$, а для $x_n'' = \frac{1}{\frac{\pi}{2} + 2\pi n} \xrightarrow[n \to \infty]{} 0 \quad \lim_{n \to \infty} g(f(x_n'')) = 1$.
+
+- **Теорема (О пределе сложной функции).** Пусть $f: D \to E, a \in \text{Lim } D, g: E \to \mathbb{R}, b \in \text{Lim } E$. Пусть $\lim_{x \to a, x \in D} f(x) = b, \lim_{y \to b, y \in E} g(y) = c$, и выполнено одно из двух условий:
+  1) $\exists \delta > 0 : \forall x \in \mathring{U}_\delta(a) \quad f(x) \neq b$; 
+  2) $g(b) = c$.
+  Тогда $\lim_{x \to a, x \in D} (g \circ f)(x) = c$.
+  **Доказательство.** Пусть $\{x_n\}$ — произвольная последовательность: $x_n \in D, x_n \neq a \quad \forall n, \lim_{n \to \infty} x_n = a$. Из критерия Гейне: $\lim_{n \to \infty} f(x_n) = b$.
+  - Пусть выполнено первое условие, тогда $\exists N : \forall n \ge N \quad x_n \in \mathring{U}_\delta(a)$, и тогда $f(x_n) \neq b$. Так как $f(x_n) \in E, f(x_n) \neq b \quad \forall n, \lim_{n \to \infty} f(x_n) = b$. Из критерия Гейне следует, что $\lim_{n \to \infty} g(f(x_n)) = c$. Так как $\{x_n\}$ — произвольная последовательность, то из критерия Гейне следует, что $\lim_{x \to a, x \in D} g(f(x)) = c$.
+  - Если выполнено второе условие. Если множество $\{n : f(x_n) = b\}$ бесконечно, то рассмотрим 2 подпоследовательности: $\{x_{n_k}'\} : f(x_{n_k}') \neq b \quad \forall k$, и $\{x_{n_m}''\} : f(x_{n_m}'') = b \quad \forall m$.
+    $\lim_{k \to \infty} g(f(x_{n_k}')) = c$ по доказанному выше.
+    $\lim_{m \to \infty} g(f(x_{n_m}'')) = g(b) = c$.
+    Если $\{x_{n_k}\}$ — произвольная подпоследовательность: $\lim_{k \to \infty} g(f(x_{n_k}))$ существует, то она имеет общую подпоследовательность хотя бы с одной из этих двух, а следовательно, $\lim_{k \to \infty} g(f(x_{n_k})) = c$. То есть множество частичных пределов последовательности $\{g(f(x_n))\}$ состоит из одного числа $c$, то есть $\lim_{n \to \infty} g(f(x_n)) = c$. Следовательно, $\lim_{x \to a, x \in D} g(f(x)) = c. \blacksquare$
+
+#### п. 6. Некоторые "стандартные" пределы
+
+- **1)** $\lim_{x \to a} \sin x = \sin a, \quad a \in \mathbb{R}$
+  $\forall \varepsilon > 0 \exists \delta > 0 : \forall x \text{ из } 0 < |x - a| < \delta \Rightarrow |\sin x - \sin a| < \varepsilon$.
+  $\left|2 \sin \frac{x - a}{2} \cos \frac{x + a}{2}\right| = 2 \cdot \left|\sin \frac{x - a}{2}\right| \cdot \left|\cos \frac{x + a}{2}\right| \le 2 \cdot \frac{|x - a|}{2} \cdot 1 = |x - a| < \varepsilon$, если $|x - a| < \delta = \varepsilon$. (Используется неравенство $|\sin x| \le |x|$).
+
+- **2)** $\lim_{x \to a} \cos x = \cos a$ (упражнение)
+
+- **3)** $\lim_{x \to +\infty} A^x = \lim_{x \to +\infty} e^{x \cdot \ln A} = \begin{cases} +\infty, & A > 1 \\ 0, & 0 < A < 1 \end{cases}$
+  $\lim_{x \to -\infty} A^x = \begin{cases} 0, & A > 1 \\ +\infty, & 0 < A < 1 \end{cases}$ (где $A > 0, A \neq 1$).
+
+- **4)** $\lim_{x \to a} A^x = A^a, \quad A > 0$. 
+  (Для $A = 1$ — очевидно. Для $0 < A < 1$ заменим $A^x = \left(\frac{1}{A}\right)^{-x}$).
+  Пусть $A > 1$. Сначала докажем, что $\lim_{x \to +0} A^x = 1$. Пусть $\varepsilon > 0$ — произвольное. Так как $\lim_{n \to \infty} \sqrt[n]{A} = \lim_{n \to \infty} A^{\frac{1}{n}} = 1$, то $\exists N : \forall n \ge N \quad |A^{\frac{1}{n}} - 1| = A^{\frac{1}{n}} - 1 < \varepsilon$.
+  Пусть $\delta = \frac{1}{N}$, тогда $\forall x \in (0; \delta) \quad |A^x - 1| = A^x - 1 < A^{\frac{1}{N}} - 1 < \varepsilon$, (так как $y=A^x$ строго возрастает). То есть $\lim_{x \to +0} A^x = 1$.
+  Далее, $\lim_{x \to -0} A^x = \lim_{x \to -0} \frac{1}{A^{-x}} = \frac{1}{\lim_{x \to -0} A^{-x}} = [ -x = t \to +0 ] = \frac{1}{1} = 1$.
+  Далее, $\lim_{x \to a} A^x = \lim_{x \to a} A^{x-a} \cdot A^a = A^a \cdot \lim_{x \to a} A^{x-a} = A^a \cdot 1 = A^a$.
+
+- **5)** $\lim_{x \to a} \log_A x = \log_A a, \quad a > 0, A > 0, A \neq 1$ — следует из теоремы о непрерывности обратной функции (позже).
+
+- **6)** $\lim_{x \to +\infty} \frac{x}{a^x} = 0 \quad (a > 1)$.
+  Пусть $\{x_n\}$ — произвольная последовательность, $x_n \to +\infty$, тогда $\exists N : \forall n \ge N \quad 0 \le \frac{x_n}{a^{x_n}} \le \frac{[x_n] + 1}{a^{[x_n]}} = \frac{[x_n]}{a^{[x_n]}} + \frac{1}{a^{[x_n]}} \xrightarrow[n \to \infty]{} 0$, так как $\lim_{m \to \infty} \frac{m}{a^m} = 0$. (По теореме о зажатой последовательности).
+
+- **7)** $\lim_{x \to +\infty} \frac{x^\alpha}{a^x} = 0, \quad \alpha > 0, a > 1.$
+  $0 \le \frac{x^\alpha}{a^x} \le \frac{x^{[\alpha]+1}}{a^x} \quad \forall x \ge 1$
+  Обозначим $[\alpha]+1 = k \in \mathbb{N}$, тогда $\frac{x^k}{a^x} = \left( \frac{x}{(\sqrt[k]{a})^x} \right)^k \to 0$ при $x \to +\infty$. (По теореме о зажатой функции, $\lim_{x \to +\infty} \frac{x^\alpha}{a^x} = 0$, так как $\sqrt[k]{a} = A > 1$).
+
+- **8)** $\lim_{x \to +\infty} \frac{\log_a x}{x} = 0 \quad (a > 1)$
+  Сначала докажем: $\lim_{n \to \infty} \frac{\log_a n}{n} = 0$. Пусть $\varepsilon > 0$ — произвольное. Так как $\lim_{n \to \infty} \sqrt[n]{n} = 1$, то $\exists N: \forall n \ge N \quad |\sqrt[n]{n} - 1| = \sqrt[n]{n} - 1 < a^\varepsilon - 1$.
+  $1 \le \sqrt[n]{n} < a^\varepsilon, \quad \log_a 1 \le \log_a (n^{\frac{1}{n}}) < \log_a (a^\varepsilon)$
+  $\forall n \ge N \quad 0 \le \frac{1}{n} \log_a n < \varepsilon$, то есть $\lim_{n \to \infty} \frac{\log_a n}{n} = 0$.
+  Пусть $\{x_n\}$ — произвольная последовательность: $x_n \to +\infty$, тогда $\exists N: \forall n \ge N \quad 0 \le \frac{\log_a x_n}{x_n} \le \frac{\log_a([x_n]+1)}{[x_n]} = \frac{\log_a([x_n]+1)}{[x_n]+1} \cdot \frac{[x_n]+1}{[x_n]} \to 0$.
+  По теореме о зажатой последовательности: $\lim_{n \to \infty} \frac{\log_a x_n}{x_n} = 0$. Из критерия Гейне: $\lim_{x \to +\infty} \frac{\log_a x}{x} = 0$.
+
+- **9)** $\lim_{x \to +\infty} \frac{\log_a x}{x^\alpha} = \lim_{x \to +\infty} \frac{\frac{1}{\alpha} \log_a (x^\alpha)}{x^\alpha} = 0$, так как $t = x^\alpha \to +\infty \quad (a > 1, \alpha > 0)$.
+
+- **10)** $\lim_{x \to +0} x^\alpha \cdot \log_a x = 0, \quad \alpha > 0, a > 1$
+  $x = \frac{1}{t}, \quad t = \frac{1}{x} \to +\infty, \quad \lim_{t \to +\infty} \frac{1}{t^\alpha} \log_a\left(\frac{1}{t}\right) = -\lim_{t \to +\infty} \frac{\log_a t}{t^\alpha} = 0$.
+
+#### п. 7. Первый замечательный предел
+
+$$ \lim_{x \to 0} \frac{\sin x}{x} = 1 $$
+**Доказательство.** Для $0 < x < \frac{\pi}{2}: \quad \sin x < x < \operatorname{tg} x = \frac{\sin x}{\cos x} ; \quad \cos x < \frac{\sin x}{x} < 1$
+Так как $\lim_{x \to +0} \cos x = 1$, то по теореме о зажатой функции: $\lim_{x \to +0} \frac{\sin x}{x} = 1$.
+Далее, $\lim_{x \to -0} \frac{\sin x}{x} = \lim_{x \to -0} \frac{\sin(-x)}{-x} = 1$, так как $t = -x \to +0$. Следовательно, $\lim_{x \to 0} \frac{\sin x}{x} = 1$. $\blacksquare$
+
+**Следствия:**
+- **1)** $\lim_{x \to 0} \frac{\operatorname{tg} x}{x} = \lim_{x \to 0} \frac{\sin x}{x \cdot \cos x} = \lim_{x \to 0} \frac{\sin x}{x} \cdot \lim_{x \to 0} \frac{1}{\cos x} = 1$.
+- **2)** $\lim_{x \to 0} \frac{\arcsin x}{x} = \left\{ \begin{matrix} t = \arcsin x \to 0 \\ x = \sin t \end{matrix} \right\} = \lim_{t \to 0} \frac{t}{\sin t} = \frac{1}{\lim_{t \to 0} \frac{\sin t}{t}} = 1$.
+  $\left( \lim_{x \to 0} \frac{t(x)}{\sin(t(x))} = 1, \text{ где } t(x) = \arcsin x \to 0 \text{ при } x \to 0, \text{ и } t(x) \neq 0 \text{ в проколотой окрестности точки } x=0 \right)$.
+- **3)** $\lim_{x \to 0} \frac{\operatorname{arctg} x}{x} = 1$ (упражнение).
+- **4)** $\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \lim_{x \to 0} \frac{(1 - \cos x)(1 + \cos x)}{x^2(1 + \cos x)} = \lim_{x \to 0} \frac{1 - \cos^2 x}{x^2(1 + \cos x)} = \lim_{x \to 0} \left( \frac{\sin x}{x} \right)^2 \cdot \lim_{x \to 0} \frac{1}{1 + \cos x} = 1 \cdot \frac{1}{2} = \frac{1}{2}$.
+
+#### п. 8. Второй замечательный предел
+
+$$ \lim_{x \to \pm\infty} \left( 1 + \frac{1}{x} \right)^x = e $$
+**Доказательство.** 
+1) Пусть $\{x_n\}$ — произвольная последовательность, $x_n \to +\infty$ при $n \to \infty$. Тогда $\exists N: \forall n \ge N \quad \left( 1 + \frac{1}{[x_n] + 1} \right)^{[x_n]} \le \left( 1 + \frac{1}{x_n} \right)^{x_n} \le \left( 1 + \frac{1}{[x_n]} \right)^{[x_n] + 1}$ (где $[x_n] \in \mathbb{N}$, так как $x_n > 0 \quad \forall n \ge N$).
+Левая часть: $\frac{\left( 1 + \frac{1}{[x_n] + 1} \right)^{[x_n] + 1}}{\left( 1 + \frac{1}{[x_n] + 1} \right)^1} \to \frac{e}{1} = e$.
+Правая часть: $\left( 1 + \frac{1}{[x_n]} \right)^{[x_n]} \cdot \left( 1 + \frac{1}{[x_n]} \right)^1 \to e \cdot 1 = e$.
+Из теоремы о зажатой последовательности: $\lim_{n \to \infty} \left( 1 + \frac{1}{x_n} \right)^{x_n} = e$. Из критерия Гейне: $\lim_{x \to +\infty} \left( 1 + \frac{1}{x} \right)^x = e$.
+2) $\lim_{x \to -\infty} \left( 1 + \frac{1}{x} \right)^x = \lim_{x \to -\infty} \left( \frac{x+1}{x} \right)^x = \lim_{x \to -\infty} \left( \frac{x}{x+1} \right)^{-x} = \lim_{x \to -\infty} \left( \frac{x+1-1}{x+1} \right)^{-x} = \lim_{x \to -\infty} \left( 1 + \frac{-1}{x+1} \right)^{-x} = \lim_{x \to -\infty} \left( 1 + \frac{1}{-x-1} \right)^{-x-1} \cdot \left( 1 + \frac{1}{-x-1} \right)^{-1} = e \cdot 1 = e$.
+(заменим $-x-1=t \to +\infty$ и воспользуемся пунктом (1)) $\blacksquare$
+
+**Следствия:**
+- **1)** $\lim_{x \to 0} (1+x)^{\frac{1}{x}} = e \quad \left(\text{Замена } \frac{1}{x} = t \to +\infty, \text{ если } x \to +0; \quad t \to -\infty, \text{ если } x \to -0\right)$
+- **2)** $\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+  Из "свойства непрерывности" $\ln x$: $\lim_{x \to 0} \frac{1}{x} \ln(1+x) = \lim_{x \to 0} \ln(1+x)^{\frac{1}{x}} = \ln \left( \lim_{x \to 0} (1+x)^{\frac{1}{x}} \right) = \ln e = 1$.
+- **3)** $\lim_{x \to 0} \frac{\log_a(1+x)}{x} = \frac{1}{\ln a} \quad \text{(упражнение)}$
+- **4)** $\lim_{x \to 0} \frac{e^x - 1}{x} = \left\{ \begin{matrix} \text{замена} \\ t = e^x - 1 \to 0 \\ x = \ln(1+t) \end{matrix} \right\} = \lim_{t \to 0} \frac{t}{\ln(1+t)} = \frac{1}{\lim_{t \to 0} \frac{\ln(1+t)}{t}} = 1$.
+  $\left( \lim_{x \to 0} \frac{t(x)}{\ln(1+t(x))} = 1, \text{ где } t(x) = e^x-1 \to 0 \text{ при } x \to 0, \text{ и } t(x) \neq 0 \text{ в проколотой окрестности } x=0 \right)$.
+- **5)** $\lim_{x \to 0} \frac{(1+x)^\alpha - 1}{x} = \lim_{x \to 0} \frac{e^{\alpha \ln(1+x)} - 1}{\alpha \ln(1+x)} \cdot \lim_{x \to 0} \frac{\alpha \ln(1+x)}{x} = 1 \cdot \alpha \cdot 1 = \alpha$.
